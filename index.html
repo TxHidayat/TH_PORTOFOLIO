@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Taufik H. — Portofolia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- CRT Frame / Console -->
+  <div id="console" class="crt">
+    <div id="boot" class="boot-screen">
+      <pre class="boot-text"></pre>
+    </div>
+
+    <header class="top-panel">
+      <div class="brand">
+        <div class="logo-plate">TXH</div>
+        <div class="brand-text">
+          <h1 class="name">Taufik Hidayat</h1>
+          <p class="role">UI/UX Designer • Front-End Dev</p>
+        </div>
+      </div>
+
+      <nav class="knob-nav">
+        <button class="knob-btn" data-target="about" title="About">
+          <span class="led"></span>
+          ABOUT
+        </button>
+        <button class="knob-btn active" data-target="projects" title="Projects">
+          <span class="led"></span>
+          PROJECTS
+        </button>
+        <button class="knob-btn" data-target="contact" title="Contact">
+          <span class="led"></span>
+          CONTACT
+        </button>
+      </nav>
+    </header>
+
+    <main class="screen">
+      <!-- HERO / Turntable -->
+      <section id="home" class="panel home-panel active-panel">
+        <div class="turntable">
+          <div class="vinyl-wrap">
+            <div id="vinyl" class="vinyl spinning">
+              <div class="label">
+                <!-- Label photo (default placeholder) -->
+                <img src="img/profile-480.jpg" alt="Label Photo" class="label-photo" id="labelPhoto">
+              </div>
+            </div>
+            <button id="playBtn" class="play-btn" aria-pressed="true">▶</button>
+          </div>
+          <div class="console-info">
+            <h2 class="headline">Hi, Saya Taufik Hidayat</h2>
+            <p class="sub">Seorang Mahasiswa</p>
+            <div class="mini-eq" aria-hidden="true">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="panel about-panel">
+        <div class="about-grid">
+          <figure class="polaroid">
+            <!-- Responsive <picture> with fallback -->
+            <picture class="polaroid-img">
+              <source srcset="img/profile-960.webp" type="image/webp">
+              <source srcset="img/profile-960.jpg" type="image/jpeg">
+              <!-- default fallback (use local file img/profile-480.jpg) -->
+              <img src="img/profil.jpg" alt="Foto Taufik Hidayat" id="polaroidPhoto" />
+            </picture>
+            <figcaption>Foto Polaroid</figcaption>
+
+            <!-- Change photo control (triggers file input) -->
+            <div style="margin-top:10px">
+              <button id="changePhotoBtn" class="btn small">Ganti Foto</button>
+              <input type="file" id="photoInput" accept="image/*" style="display:none" />
+            </div>
+          </figure>
+
+          <div class="data-module">
+            <h3>About Me</h3>
+            <p>UI/UX Designer & Front-end Developer yang suka memadukan estetika retro dan interaksi modern. Fokus pada prototyping, visual design, dan frontend performant.</p>
+
+            <div class="meters">
+              <div class="meter">
+                <label>UI Design</label>
+                <div class="vu"><div class="needle" data-value="80"></div></div>
+              </div>
+              <div class="meter">
+                <label>Front-end</label>
+                <div class="vu"><div class="needle" data-value="85"></div></div>
+              </div>
+              <div class="meter">
+                <label>Prototyping</label>
+                <div class="vu"><div class="needle" data-value="75"></div></div>
+              </div>
+            </div>
+
+            <div class="knob-row">
+              <div class="knob-control">
+                <div class="knob" id="expKnob" data-value="3"></div>
+                <small>Experience Level</small>
+              </div>
+              <div class="knob-control">
+                <div class="knob" id="themeKnob" data-value="1"></div>
+                <small>Theme (A,B,C)</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="panel projects-panel">
+        <h3 class="section-title">Project Library</h3>
+        <div id="tapeGrid" class="tape-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- SKILLS (Control Room) -->
+      <section id="skills" class="panel skills-panel">
+        <h3 class="section-title">Control Panel — Skills</h3>
+        <div class="control-room">
+          <div class="knobs">
+            <div class="knob-big" data-skill="UI" data-value="8">UI</div>
+            <div class="knob-big" data-skill="FE" data-value="9">FE</div>
+            <div class="knob-big" data-skill="UX" data-value="7">UX</div>
+          </div>
+          <div class="eq-wide">
+            <div class="bar" style="--i:1"></div>
+            <div class="bar" style="--i:2"></div>
+            <div class="bar" style="--i:3"></div>
+            <div class="bar" style="--i:4"></div>
+            <div class="bar" style="--i:5"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="panel contact-panel">
+        <h3 class="section-title">Contact — Radio Station</h3>
+        <div class="radio-station">
+          <div id="dial" class="dial">
+            <div class="dial-pointer"></div>
+            <div class="dial-label">88.0</div>
+          </div>
+          <div class="freq-list">
+            <div class="freq" data-freq="88.01" data-type="email">Email: hi@taufikh.dev</div>
+            <div class="freq" data-freq="92.10" data-type="insta">Instagram: @txhidayat</div>
+            <div class="freq" data-freq="99.15" data-type="linkedin">LinkedIn: /in/txhidayat</div>
+            <div class="freq" data-freq="104.00" data-type="github">GitHub: github.com/txhidayat</div>
+          </div>
+          <div class="keypad">
+            <input type="text" id="contactMsg" placeholder="Leave a short message..." />
+            <button id="sendMsg" class="btn">Send</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot-panel">
+      <small>© <span id="year"></span> Taufik Hidayat — Retro Analog Console</small>
+    </footer>
+  </div>
+
+  <!-- Modal for Project Detail -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button id="closeModal" class="close">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

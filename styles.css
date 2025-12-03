@@ -1,0 +1,148 @@
+:root{
+  --bg:#0f0f10;
+  --crt:#0b0b0c;
+  --wood:#4e3b2e;
+  --cream:#e8dcc2;
+  --accent:#f56a3e;
+  --muted:#a29e92;
+  --glass: rgba(255,255,255,0.03);
+  --mono: 'SF Pro Text', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family:var(--mono); background:linear-gradient(180deg,var(--bg),#060606 70%); color:var(--cream); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+.crt{max-width:1100px; margin:28px auto; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,0.03); box-shadow:0 20px 60px rgba(2,2,2,0.6); background:linear-gradient(180deg,#0b0b0b 0%, #111 100%); position:relative}
+.boot-screen{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#031014, #001219 60%); z-index:20; color:#7fffd4}
+.boot-screen .boot-text{font-family:monospace; white-space:pre; font-size:14px; line-height:1.4; opacity:0.95}
+.top-panel{display:flex; justify-content:space-between; align-items:center; padding:18px 22px; border-bottom:1px solid rgba(255,255,255,0.03); background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02))}
+.brand{display:flex; gap:12px; align-items:center}
+.logo-plate{width:46px; height:46px; background:linear-gradient(180deg,#222,#0f0f0f); display:flex; align-items:center; justify-content:center; font-weight:700; border-radius:6px; box-shadow: inset 0 -2px 0 rgba(255,255,255,0.02), 0 2px 6px rgba(0,0,0,0.6)}
+.brand-text .name{margin:0; font-size:18px; letter-spacing:0.4px}
+.brand-text .role{margin:0; color:var(--muted); font-size:12px}
+
+.knob-nav{display:flex; gap:10px}
+.knob-btn{position:relative; padding:8px 14px; border-radius:6px; background:transparent; color:var(--cream); border:1px solid rgba(255,255,255,0.03); cursor:pointer; font-weight:600}
+.knob-btn .led{position:absolute; left:8px; top:8px; width:8px; height:8px; border-radius:50%; background:transparent; box-shadow:0 0 8px transparent}
+.knob-btn.active{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
+.knob-btn.active .led{background:var(--accent); box-shadow:0 0 10px var(--accent)}
+
+.screen{padding:28px; min-height:520px}
+.panel{display:none}
+.panel.active-panel{display:block}
+
+/* HOME / Turntable */
+.home-panel{display:flex; align-items:center; justify-content:center; gap:28px}
+.turntable{display:flex; gap:28px; align-items:center}
+.vinyl-wrap{position:relative; width:240px; height:240px; display:flex; align-items:center; justify-content:center}
+.vinyl{width:200px; height:200px; border-radius:50%; background:conic-gradient(#0b0b0b, #111 50%); display:flex; align-items:center; justify-content:center; box-shadow: inset 0 6px 18px rgba(0,0,0,0.6), 0 8px 30px rgba(0,0,0,0.6)}
+.vinyl .label{width:72px; height:72px; border-radius:50%; background:linear-gradient(180deg,var(--wood), #2f241e); display:flex; align-items:center; justify-content:center; font-weight:700}
+.spinning{animation:spin 6s linear infinite}
+@keyframes spin{from{transform:rotate(0)} to{transform:rotate(360deg)}}
+
+.play-btn{position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); background:var(--accent); border:none; color:#fff; font-weight:700; width:56px; height:36px; border-radius:6px; cursor:pointer; box-shadow:0 8px 18px rgba(245,106,62,0.12)}
+.console-info .headline{margin:0 0 6px 0; font-size:20px}
+.console-info .sub{margin:0 0 12px 0; color:var(--muted)}
+
+/* mini eq */
+.mini-eq{display:flex; gap:6px}
+.mini-eq span{width:8px; height:28px; background:linear-gradient(180deg,var(--accent), #c24); border-radius:3px; display:inline-block; animation:mini 1.1s infinite}
+.mini-eq span:nth-child(2){animation-delay:.08s}
+.mini-eq span:nth-child(3){animation-delay:.16s}
+.mini-eq span:nth-child(4){animation-delay:.24s}
+.mini-eq span:nth-child(5){animation-delay:.32s}
+@keyframes mini{0%{transform:scaleY(.4)}50%{transform:scaleY(1.1)}100%{transform:scaleY(.5)}}
+
+/* ABOUT */
+.about-grid{display:grid; grid-template-columns:260px 1fr; gap:20px; align-items:start}
+.polaroid{background:var(--cream); color:#222; padding:10px; border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,0.6); width:260px}
+.polaroid img{width:100%; display:block; border-radius:4px}
+.polaroid figcaption{margin-top:8px; font-size:13px; color:#333}
+
+/* Responsive polaroid / picture rule (added for upload feature) */
+.polaroid-img img,
+.polaroid img {
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:6px;
+  object-fit:cover;
+}
+
+/* Photo used on vinyl label */
+.label-photo{
+  width:68px;
+  height:68px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid rgba(255,255,255,0.06);
+  box-shadow:0 6px 18px rgba(0,0,0,0.6);
+  display:block;
+}
+
+.polaroid figcaption{margin-top:8px; font-size:13px; color:#333}
+
+/* small btn variant */
+.btn.small{ padding:6px 10px; font-size:13px; border-radius:6px; margin-left:6px }
+
+/* data module */
+.data-module h3{margin-top:0; color:var(--accent)}
+.data-module p{color:var(--muted)}
+.meters{display:flex; gap:12px; margin-top:14px}
+.meter{flex:1}
+.meter label{display:block; color:var(--muted); font-size:13px}
+.vu{height:10px; background:linear-gradient(90deg,#222,#111); border-radius:6px; position:relative; overflow:hidden; margin-top:6px}
+.vu .needle{position:absolute; left:0; top:0; bottom:0; width:0; background:linear-gradient(90deg,var(--accent), #f38); transition:width .6s ease}
+
+/* knobs */
+.knob-row{display:flex; gap:18px; margin-top:18px}
+.knob-control{display:flex; flex-direction:column; align-items:center; gap:8px}
+.knob{width:56px; height:56px; border-radius:50%; background:linear-gradient(180deg,#161616,#0f0f0f); border:1px solid rgba(255,255,255,0.03); box-shadow:inset 0 -4px 8px rgba(0,0,0,0.5); cursor:grab; position:relative}
+.knob:after{content:""; position:absolute; top:8px; left:50%; transform:translateX(-50%); width:4px; height:16px; background:var(--muted); border-radius:2px}
+
+/* PROJECTS - tape grid */
+.section-title{margin:0 0 12px 0; color:var(--muted)}
+.tape-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:18px}
+.tape-card{background:linear-gradient(180deg,#0f0f0f,#0b0b0b); border:1px solid rgba(255,255,255,0.03); padding:12px; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,0.6); position:relative; overflow:hidden; cursor:pointer; transition:transform .28s ease, box-shadow .28s ease}
+.tape-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,0.7)}
+.tape-top{display:flex; align-items:center; gap:10px}
+.tape-reels{display:flex; gap:6px; align-items:center}
+.reel{width:42px; height:42px; border-radius:50%; background:radial-gradient(circle at 40% 30%, #333, #0f0f0f); display:flex; align-items:center; justify-content:center; color:var(--muted); font-weight:700}
+.tape-label{font-weight:700}
+.tape-meta{color:var(--muted); font-size:13px; margin-top:8px}
+
+/* SKILLS control room */
+.control-room{display:flex; gap:20px; align-items:center}
+.knob-big{width:96px; height:96px; border-radius:12px; background:linear-gradient(180deg,#222,#141414); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px; cursor:pointer}
+.eq-wide{flex:1; display:flex; gap:6px; align-items:end}
+.eq-wide .bar{height:calc(20px + var(--i) * 8px); width:12px; background:linear-gradient(180deg,var(--accent),#d65); border-radius:4px; animation:barFloat 1.2s ease-in-out infinite}
+@keyframes barFloat{0%{transform:scaleY(.7)}50%{transform:scaleY(1)}100%{transform:scaleY(.8)}}
+
+/* CONTACT radio */
+.radio-station{display:flex; gap:22px; align-items:center}
+.dial{width:180px; height:180px; border-radius:50%; background:linear-gradient(180deg,#111,#0b0b0b); display:flex; align-items:center; justify-content:center; position:relative; border:6px solid rgba(255,255,255,0.02)}
+.dial::before{content:""; position:absolute; inset:6px; border-radius:50%; box-shadow:inset 0 8px 20px rgba(0,0,0,0.6)}
+.dial-pointer{width:8px; height:50px; background:var(--accent); position:absolute; top:20px; border-radius:6px; transform-origin:50% 88px; transition:transform .12s linear}
+.dial-label{position:absolute; bottom:10px; color:var(--muted)}
+.freq-list{display:flex; flex-direction:column; gap:8px}
+.freq{padding:10px 12px; background:var(--glass); border-radius:8px; color:var(--muted); border:1px solid rgba(255,255,255,0.02)}
+.keypad{display:flex; gap:8px; align-items:center}
+.keypad input{flex:1; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); background:#0b0b0b; color:var(--cream)}
+.btn{background:var(--accent); border:none; padding:10px 12px; border-radius:8px; color:#fff; cursor:pointer}
+
+/* footer */
+.foot-panel{padding:10px 18px; text-align:center; color:var(--muted); border-top:1px solid rgba(255,255,255,0.02)}
+
+/* modal */
+.modal{position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(2,2,2,0.6); z-index:50}
+.modal.hidden{display:none}
+.modal-content{background:#0b0b0b; padding:18px; border-radius:10px; width:min(920px,92%); box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+.modal .close{background:transparent; border:0; color:var(--muted); font-size:20px; float:right; cursor:pointer}
+
+@media (max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .turntable{flex-direction:column; align-items:center}
+  .vinyl-wrap{width:180px;height:180px}
+}
+
+/* small accessible focus */
+button:focus{outline:2px solid rgba(245,106,62,0.24); outline-offset:2px}
