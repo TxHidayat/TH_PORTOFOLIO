@@ -1,179 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Taufik H. — Portofolia</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taufik Hidayat | Creative Director & Founder</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- CRT Frame / Console -->
-  <div id="console" class="crt">
-    <div id="boot" class="boot-screen">
-      <pre class="boot-text"></pre>
-    </div>
 
-    <header class="top-panel">
-      <div class="brand">
-        <div class="logo-plate">TXH</div>
-        <div class="brand-text">
-          <h1 class="name">Taufik Hidayat</h1>
-          <p class="role">UI/UX Designer • Front-End Dev</p>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="subtitle reveal-text">STRATEGIST & CREATIVE LEAD</p>
+            <h1 class="title">
+                <span class="reveal-text">TAUFIK</span>
+                <span class="reveal-text outline">HIDAYAT</span>
+            </h1>
+            <div class="hero-footer reveal-text">
+                <span class="role">BASED IN INDONESIA</span>
+                <div class="scroll-indicator">Scroll to Explore</div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <nav class="knob-nav">
-        <button class="knob-btn" data-target="about" title="About">
-          <span class="led"></span>
-          ABOUT
-        </button>
-        <button class="knob-btn active" data-target="projects" title="Projects">
-          <span class="led"></span>
-          PROJECTS
-        </button>
-        <button class="knob-btn" data-target="contact" title="Contact">
-          <span class="led"></span>
-          CONTACT
-        </button>
-      </nav>
-    </header>
-
-    <main class="screen">
-      <!-- HERO / Turntable -->
-      <section id="home" class="panel home-panel active-panel">
-        <div class="turntable">
-          <div class="vinyl-wrap">
-            <div id="vinyl" class="vinyl spinning">
-              <div class="label">
-                <!-- Label photo (default placeholder) -->
-                <img src="img/profile-480.jpg" alt="Label Photo" class="label-photo" id="labelPhoto">
-              </div>
-            </div>
-            <button id="playBtn" class="play-btn" aria-pressed="true">▶</button>
-          </div>
-          <div class="console-info">
-            <h2 class="headline">Hi, Saya Taufik Hidayat</h2>
-            <p class="sub">Seorang Mahasiswa</p>
-            <div class="mini-eq" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about" class="panel about-panel">
-        <div class="about-grid">
-          <figure class="polaroid">
-            <!-- Responsive <picture> with fallback -->
-            <picture class="polaroid-img">
-              <source srcset="img/profile-960.webp" type="image/webp">
-              <source srcset="img/profile-960.jpg" type="image/jpeg">
-              <!-- default fallback (use local file img/profile-480.jpg) -->
-              <img src="img/profil.jpg" alt="Foto Taufik Hidayat" id="polaroidPhoto" />
-            </picture>
-            <figcaption>Foto Polaroid</figcaption>
-
-            <!-- Change photo control (triggers file input) -->
-            <div style="margin-top:10px">
-              <button id="changePhotoBtn" class="btn small">Ganti Foto</button>
-              <input type="file" id="photoInput" accept="image/*" style="display:none" />
-            </div>
-          </figure>
-
-          <div class="data-module">
-            <h3>About Me</h3>
-            <p>UI/UX Designer & Front-end Developer yang suka memadukan estetika retro dan interaksi modern. Fokus pada prototyping, visual design, dan frontend performant.</p>
-
-            <div class="meters">
-              <div class="meter">
-                <label>UI Design</label>
-                <div class="vu"><div class="needle" data-value="80"></div></div>
-              </div>
-              <div class="meter">
-                <label>Front-end</label>
-                <div class="vu"><div class="needle" data-value="85"></div></div>
-              </div>
-              <div class="meter">
-                <label>Prototyping</label>
-                <div class="vu"><div class="needle" data-value="75"></div></div>
-              </div>
+    <section class="manifesto" id="about">
+        <div class="manifesto-container">
+            
+            <div class="profile-side">
+                <div class="profile-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2787&auto=format&fit=crop" alt="Taufik Hidayat" class="profile-img">
+                </div>
+                <div class="profile-identity">
+                    <h2 class="profile-name">TAUFIK<br>HIDAYAT</h2>
+                    <p class="profile-role">CREATIVE DIRECTOR</p>
+                </div>
+                <p class="profile-quote">"Building brands that survive the wild."</p>
             </div>
 
-            <div class="knob-row">
-              <div class="knob-control">
-                <div class="knob" id="expKnob" data-value="3"></div>
-                <small>Experience Level</small>
-              </div>
-              <div class="knob-control">
-                <div class="knob" id="themeKnob" data-value="1"></div>
-                <small>Theme (A,B,C)</small>
-              </div>
+            <div class="content-side">
+                <div class="content-grid">
+                    <div class="text-box">
+                        <span class="label">The Vision</span>
+                        <h2>I bridge the gap between<br>raw nature & digital strategy.</h2>
+                        <p>Saya adalah seorang founder dan creative strategist yang fokus membangun identitas brand yang kuat. Dengan latar belakang eksplorasi alam, saya membawa filosofi ketangguhan dan adaptabilitas ke dalam setiap projek bisnis dan desain yang saya tangani.</p>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <span class="label">Expertise</span>
+                        <ul class="skill-list">
+                            <li>Brand Strategy</li>
+                            <li>Community Building</li>
+                            <li>Creative Direction</li>
+                            <li>Product Development</li>
+                        </ul>
+                    </div>
+
+                    <div class="stat-box" style="border-top: 1px solid #333; padding-top: 2rem;">
+                        <span class="label">Experience</span>
+                        <div class="xp-row">
+                            <span class="big-number">5+</span>
+                            <span class="xp-desc">Years Leading<br>Projects</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
         </div>
-      </section>
+    </section>
 
-      <!-- PROJECTS -->
-      <section id="projects" class="panel projects-panel">
-        <h3 class="section-title">Project Library</h3>
-        <div id="tapeGrid" class="tape-grid" aria-live="polite"></div>
-      </section>
-
-      <!-- SKILLS (Control Room) -->
-      <section id="skills" class="panel skills-panel">
-        <h3 class="section-title">Control Panel — Skills</h3>
-        <div class="control-room">
-          <div class="knobs">
-            <div class="knob-big" data-skill="UI" data-value="8">UI</div>
-            <div class="knob-big" data-skill="FE" data-value="9">FE</div>
-            <div class="knob-big" data-skill="UX" data-value="7">UX</div>
-          </div>
-          <div class="eq-wide">
-            <div class="bar" style="--i:1"></div>
-            <div class="bar" style="--i:2"></div>
-            <div class="bar" style="--i:3"></div>
-            <div class="bar" style="--i:4"></div>
-            <div class="bar" style="--i:5"></div>
-          </div>
+<section class="editorial-section" id="projects">
+        <div class="editorial-header">
+            <h2>Selected Works</h2>
+            <p>Case Studies (202X — Present)</p>
         </div>
-      </section>
 
-      <!-- CONTACT -->
-      <section id="contact" class="panel contact-panel">
-        <h3 class="section-title">Contact — Radio Station</h3>
-        <div class="radio-station">
-          <div id="dial" class="dial">
-            <div class="dial-pointer"></div>
-            <div class="dial-label">88.0</div>
-          </div>
-          <div class="freq-list">
-            <div class="freq" data-freq="88.01" data-type="email">Email: hi@taufikh.dev</div>
-            <div class="freq" data-freq="92.10" data-type="insta">Instagram: @txhidayat</div>
-            <div class="freq" data-freq="99.15" data-type="linkedin">LinkedIn: /in/txhidayat</div>
-            <div class="freq" data-freq="104.00" data-type="github">GitHub: github.com/txhidayat</div>
-          </div>
-          <div class="keypad">
-            <input type="text" id="contactMsg" placeholder="Leave a short message..." />
-            <button id="sendMsg" class="btn">Send</button>
-          </div>
+        <div class="editorial-container">
+            
+            <div class="editorial-item">
+                <div class="e-img-wrapper parallax-img">
+                    <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?q=80&w=2670&auto=format&fit=crop" alt="Bonyos Explorers">
+                </div>
+                <div class="e-content reveal-project">
+                    <span class="p-number">01</span>
+                    <h3 class="p-title">Bonyos<br>Explorers</h3>
+                    <p class="p-role">Role: Founder & Creative Strategy</p>
+                    <p class="p-desc">
+                        Sebuah inisiatif untuk mendefinisikan ulang petualangan modern. Menggabungkan pembangunan komunitas organik dengan strategi brand visual yang tangguh.
+                    </p>
+                    <ul class="p-tags">
+                        <li>Brand Identity</li>
+                        <li>Community Management</li>
+                        <li>Merchandise</li>
+                    </ul>
+                    <a href="#" class="btn-line">Read Case Study</a>
+                </div>
+            </div>
+
+            <div class="editorial-item reverse">
+                <div class="e-img-wrapper parallax-img">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2670&auto=format&fit=crop" alt="Summit Identity">
+                </div>
+                <div class="e-content reveal-project">
+                    <span class="p-number">02</span>
+                    <h3 class="p-title">Summit<br>Identity</h3>
+                    <p class="p-role">Role: Art Director</p>
+                    <p class="p-desc">
+                        Perancangan ulang identitas visual untuk brand perlengkapan teknis. Fokus pada tipografi yang berani dan palet warna yang terinspirasi dari batuan glasial.
+                    </p>
+                    <ul class="p-tags">
+                        <li>Visual Identity</li>
+                        <li>Packaging</li>
+                        <li>Art Direction</li>
+                    </ul>
+                    <a href="#" class="btn-line">Read Case Study</a>
+                </div>
+            </div>
+
+            <div class="editorial-item">
+                <div class="e-img-wrapper parallax-img">
+                    <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?q=80&w=2672&auto=format&fit=crop" alt="UI Design">
+                </div>
+                <div class="e-content reveal-project">
+                    <span class="p-number">03</span>
+                    <h3 class="p-title">Topo<br>Interface</h3>
+                    <p class="p-role">Role: UI/UX Lead</p>
+                    <p class="p-desc">
+                        Mendesain antarmuka pemetaan digital yang memprioritaskan keterbacaan data dalam kondisi ekstrem dan pencahayaan minim (Dark Mode Native).
+                    </p>
+                    <ul class="p-tags">
+                        <li>User Interface</li>
+                        <li>User Experience</li>
+                        <li>Prototyping</li>
+                    </ul>
+                    <a href="#" class="btn-line">Read Case Study</a>
+                </div>
+            </div>
+
         </div>
-      </section>
-    </main>
-
-    <footer class="foot-panel">
-      <small>© <span id="year"></span> Taufik Hidayat — Retro Analog Console</small>
+    </section>
+    <footer class="basecamp">
+        <div class="basecamp-grid">
+            <div class="bc-col">
+                <h4>Inquiries</h4>
+                <a href="mailto:halo@taufik.com" class="hover-trigger email-link">halo@taufik.com</a>
+                <p style="margin-top: 1rem; font-size: 1rem; color: #666;">Available for freelance & collaboration.</p>
+            </div>
+            <div class="bc-col">
+                <h4>Socials</h4>
+                <a href="#" class="hover-trigger">LinkedIn</a>
+                <a href="#" class="hover-trigger">Instagram</a>
+                <a href="#" class="hover-trigger">Behance</a>
+            </div>
+            <div class="bc-col">
+                <h4>Location</h4>
+                <p>West Java,<br>Indonesia.</p>
+            </div>
+        </div>
+        <div class="bc-bottom">
+            <h1>LET'S CREATE.</h1>
+            <div class="copyright">© 2025 Taufik Hidayat. All Rights Reserved.</div>
+        </div>
     </footer>
-  </div>
 
-  <!-- Modal for Project Detail -->
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="modal-content">
-      <button id="closeModal" class="close">✕</button>
-      <div id="modalBody"></div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
