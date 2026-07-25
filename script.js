@@ -61,9 +61,8 @@ gsap.from('.reveal-text', {
     delay: 0.5
 });
 
-
 /* =========================================
-   4. HANGING ID CARD PHYSICS
+   4. HANGING ID CARD PHYSICS (MOUSE & TOUCH)
 ========================================= */
 const card = document.getElementById('swing-card');
 
@@ -71,6 +70,7 @@ if (card) {
     let isDragging = false;
     let startX = 0;
 
+    // Animasi ayunan lambat saat diam
     const idleSway = gsap.to(card, {
         rotation: 2,
         duration: 3,
@@ -79,35 +79,50 @@ if (card) {
         ease: 'sine.inOut'
     });
 
-    card.addEventListener('mousedown', (e) => {
+    // 1. FUNGSI MULAI TARIK (Merespon Mouse & Jari)
+    const startDrag = (e) => {
         isDragging = true;
-        startX = e.clientX;
+        // Ambil kordinat X, bedakan antara sentuhan layar atau klik mouse
+        startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        
         idleSway.pause();
         gsap.killTweensOf(card);
         card.style.cursor = 'grabbing';
-    });
+    };
 
-    window.addEventListener('mouseup', () => {
+    // 2. FUNGSI LEPAS TARIKAN (Merespon Mouse & Jari)
+    const endDrag = () => {
         if (!isDragging) return;
         isDragging = false;
         card.style.cursor = 'grab';
 
+        // Efek membal (elastic) saat dilepas
         gsap.to(card, {
             rotation: 0,
             duration: 2,
             ease: 'elastic.out(1, 0.25)',
             onComplete: () => idleSway.play()
         });
-    });
+    };
 
-    window.addEventListener('mousemove', (e) => {
+    // 3. FUNGSI MENGGESER (Merespon Mouse & Jari)
+    const moveDrag = (e) => {
         if (!isDragging) return;
-        const diff = e.clientX - startX;
-        // PERBAIKAN: Menambahkan tanda minus (-) agar arah rotasi tidak terbalik
+        const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+        const diff = currentX - startX;
         gsap.set(card, { rotation: -(diff * 0.15) });
-    });
-}
+    };
 
+    // --- EVENT LISTENER UNTUK PC / LAPTOP (MOUSE) ---
+    card.addEventListener('mousedown', startDrag);
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('mousemove', moveDrag);
+
+    // --- EVENT LISTENER UNTUK HP / TABLET (TOUCH) ---
+    card.addEventListener('touchstart', startDrag, { passive: true });
+    window.addEventListener('touchend', endDrag);
+    window.addEventListener('touchmove', moveDrag, { passive: true });
+}
 
 /* =========================================
    5. EDITORIAL PROJECT ANIMATION (HORIZONTAL)
