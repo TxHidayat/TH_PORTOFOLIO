@@ -1,4 +1,6 @@
-// 1. SETUP SMOOTH SCROLL
+/* =========================================
+   1. SETUP SMOOTH SCROLL (LENIS)
+========================================= */
 const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -12,126 +14,186 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// Register Plugin
 gsap.registerPlugin(ScrollTrigger);
 
-// 2. CURSOR LOGIC
+
+/* =========================================
+   2. CUSTOM CURSOR (FIXED & SAFE)
+========================================= */
 const cursorDot = document.querySelector('.cursor-dot');
 const cursorOutline = document.querySelector('.cursor-outline');
-const hoverTriggers = document.querySelectorAll('.hover-trigger, a, button, .card-content');
 
-window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
+if (cursorDot && cursorOutline) {
+    window.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
 
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
+        cursorDot.style.left = `${clientX}px`;
+        cursorDot.style.top = `${clientY}px`;
 
-    cursorOutline.animate({
-        left: `${posX}px`,
-        top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
-});
-
-hoverTriggers.forEach(trigger => {
-    trigger.addEventListener('mouseenter', () => {
-        document.body.classList.add('hovering');
+        cursorOutline.animate(
+            { left: `${clientX}px`, top: `${clientY}px` },
+            { duration: 400, fill: 'forwards' }
+        );
     });
-    trigger.addEventListener('mouseleave', () => {
-        document.body.classList.remove('hovering');
-    });
-});
 
-// 3. ANIMASI HERO
-const revealElements = document.querySelectorAll('.reveal-text');
-if(revealElements.length > 0) {
-    gsap.from(revealElements, {
-        y: 100, opacity: 0,
-        duration: 1.5, stagger: 0.2,
-        ease: "power4.out", delay: 0.5
+    document.querySelectorAll(
+        'a, button, .hover-trigger, .editorial-item, .id-card-body, .tool-item, .brands-grid img'
+    ).forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            document.body.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+            document.body.classList.remove('hovering');
+        });
     });
 }
 
-// 4. ANIMASI STACKED CARDS
-const cards = document.querySelectorAll('.card-sticky');
-cards.forEach((card, index) => {
-    gsap.from(card, {
-        scale: 0.9, opacity: 0,
-        duration: 1,
-        scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
-            toggleActions: "play none none reverse"
-        }
+
+/* =========================================
+   3. HERO TEXT REVEAL
+========================================= */
+gsap.from('.reveal-text', {
+    y: 100,
+    opacity: 0,
+    duration: 1.5,
+    stagger: 0.2,
+    ease: 'power4.out',
+    delay: 0.5
+});
+
+
+/* =========================================
+   4. HANGING ID CARD PHYSICS
+========================================= */
+const card = document.getElementById('swing-card');
+
+if (card) {
+    let isDragging = false;
+    let startX = 0;
+
+    const idleSway = gsap.to(card, {
+        rotation: 2,
+        duration: 3,
+        yoyo: true,
+        repeat: -1,
+        ease: 'sine.inOut'
     });
-});
 
-// 5. ANIMASI FOTO PROFIL
-gsap.to(".profile-img", {
-    yPercent: 10,
-    ease: "none",
-    scrollTrigger: {
-        trigger: ".profile-img-wrapper",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true
-    }
-});
+    card.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        idleSway.pause();
+        gsap.killTweensOf(card);
+        card.style.cursor = 'grabbing';
+    });
 
-// ... kode animasi sebelumnya ...
+    window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        card.style.cursor = 'grab';
 
-// 6. LOGIKA FLOATING IMAGE PROJECT
-const projectItems = document.querySelectorAll('.project-item');
-
-projectItems.forEach(item => {
-    const imgPreview = item.querySelector('.p-image-preview');
-    
-    // Saat mouse bergerak di atas item
-    item.addEventListener('mousemove', (e) => {
-        // Pindahkan gambar ke posisi kursor
-        // Kita gunakan animasi CSS/GSAP ringan agar smooth
-        gsap.to(imgPreview, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.5, // Sedikit delay agar terlihat smooth (fluid)
-            ease: "power2.out"
+        gsap.to(card, {
+            rotation: 0,
+            duration: 2,
+            ease: 'elastic.out(1, 0.25)',
+            onComplete: () => idleSway.play()
         });
     });
-});
 
-// ... kode animasi sebelumnya ...
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const diff = e.clientX - startX;
+        // PERBAIKAN: Menambahkan tanda minus (-) agar arah rotasi tidak terbalik
+        gsap.set(card, { rotation: -(diff * 0.15) });
+    });
+}
 
-// 6. ANIMASI EDITORIAL PARALLAX
-// Efek: Gambar bergerak di dalam bingkainya saat scroll (Parallax)
-const parallaxImages = document.querySelectorAll('.parallax-img img');
 
-parallaxImages.forEach(img => {
-    gsap.to(img, {
-        yPercent: 15, // Gambar turun 15%
+/* =========================================
+   5. EDITORIAL PROJECT ANIMATION (HORIZONTAL)
+========================================= */
+const editorialSection = document.querySelector('#projects');
+const editorialContainer = document.querySelector('.editorial-container');
+
+if (editorialSection && editorialContainer) {
+    // Animasi utama untuk menggeser container ke kiri (Horizontal Scroll)
+    let horizontalScroll = gsap.to(editorialContainer, {
+        x: () => -(editorialContainer.scrollWidth - window.innerWidth) + "px",
         ease: "none",
         scrollTrigger: {
-            trigger: img.parentElement, // Trigger saat container gambar masuk layar
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true // Gerakan terikat dengan scrollbar
+            trigger: editorialSection,
+            pin: true, // Mengunci layar saat berada di section ini
+            scrub: 1, // Efek mulus mengikuti scroll
+            start: "center center",
+            end: () => "+=" + (editorialContainer.scrollWidth - window.innerWidth),
+            invalidateOnRefresh: true
         }
     });
-});
 
-// Efek: Teks muncul (Fade In Up) saat scroll
-const textReveals = document.querySelectorAll('.reveal-project');
+    // Efek parallax gambar disesuaikan ke sumbu X karena sekarang bergeraknya horizontal
+    gsap.utils.toArray('.parallax-img img').forEach(img => {
+        gsap.to(img, {
+            xPercent: 15,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: img.parentElement,
+                containerAnimation: horizontalScroll,
+                start: 'left right',
+                end: 'right left',
+                scrub: true
+            }
+        });
+    });
 
-textReveals.forEach(text => {
-    gsap.from(text.children, { // Menganimasikan anak elemen (h3, p, ul)
-        y: 50,
+    // Animasi teks muncul saat elemen masuk ke layar dari kanan
+    gsap.utils.toArray('.reveal-project').forEach(block => {
+        gsap.from(block.children, {
+            y: 50,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: block,
+                containerAnimation: horizontalScroll,
+                start: "left 85%"
+            }
+        });
+    });
+}
+
+
+/* =========================================
+   6. BRANDS WALL (TOOLS)
+========================================= */
+const brandItems = document.querySelectorAll('.brands-grid img');
+
+if (brandItems.length > 0) {
+    gsap.from(brandItems, {
+        y: 30,
         opacity: 0,
-        duration: 1,
-        stagger: 0.1, // Muncul berurutan
-        ease: "power3.out",
+        duration: 0.8,
+        stagger: 0.05,
+        ease: 'power3.out',
         scrollTrigger: {
-            trigger: text,
-            start: "top 80%", // Mulai saat elemen 80% dari atas layar
-            toggleActions: "play none none reverse"
+            trigger: '.brands-grid',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
         }
     });
+}
+
+
+/* =========================================
+   7. FOOTER TEXT
+========================================= */
+gsap.from('.bc-bottom h1', {
+    y: 50,
+    opacity: 0,
+    duration: 1.2,
+    ease: 'power4.out',
+    scrollTrigger: {
+        trigger: '.bc-bottom h1',
+        start: 'top 95%'
+    }
 });

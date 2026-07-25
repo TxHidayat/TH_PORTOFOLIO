@@ -1,4 +1,6 @@
-/* --- CONFIG & VARIABLES --- */
+/* =========================================
+   --- CONFIG & VARIABLES --- 
+========================================= */
 :root {
     --bg-color: #050505;
     --card-bg: #111111;
@@ -10,8 +12,14 @@
     --font-sans: 'Inter', sans-serif;
 }
 
-/* --- RESET --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* =========================================
+   --- RESET & GLOBAL STYLES --- 
+========================================= */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
 
 body {
     background-color: var(--bg-color);
@@ -21,77 +29,236 @@ body {
     cursor: none;
 }
 
-a { text-decoration: none; color: inherit; cursor: none; }
-ul { list-style: none; }
+a { 
+    text-decoration: none; 
+    color: inherit; 
+    cursor: none; 
+}
 
-/* --- CUSTOM CURSOR --- */
+ul { 
+    list-style: none; 
+}
+
+/* =========================================
+   --- CUSTOM CURSOR --- 
+========================================= */
 .cursor-dot, .cursor-outline {
-    position: fixed; top: 0; left: 0;
+    position: fixed; 
+    top: 0; 
+    left: 0;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     z-index: 9999;
     pointer-events: none;
 }
-.cursor-dot { width: 8px; height: 8px; background-color: var(--accent-color); }
+
+.cursor-dot { 
+    width: 8px; 
+    height: 8px; 
+    background-color: var(--accent-color); 
+}
+
 .cursor-outline {
-    width: 40px; height: 40px;
+    width: 40px; 
+    height: 40px;
     border: 1px solid rgba(255,255,255,0.3);
     transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
+
 body.hovering .cursor-outline {
-    width: 70px; height: 70px;
+    width: 70px; 
+    height: 70px;
     background-color: rgba(255,255,255,0.05);
     border-color: transparent;
     backdrop-filter: blur(2px);
 }
 
-/* --- HERO SECTION --- */
+/* =========================================
+   --- HERO SECTION (RETRO BRUTALISM) --- 
+========================================= */
 .hero {
-    height: 100vh; width: 100%;
-    display: flex; justify-content: center; align-items: center;
-    position: relative; overflow: hidden;
-}
-.hero-bg {
-    position: absolute; inset: 0;
-    /* Background Pegunungan Gelap */
-    background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2670&auto=format&fit=crop');
-    background-size: cover; background-position: center;
-    opacity: 0.25; filter: grayscale(100%) contrast(1.1);
-}
-.hero-content { z-index: 2; text-align: center; padding: 0 1rem; }
-.subtitle {
-    font-size: 0.8rem; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--accent-color);
-    margin-bottom: 1.5rem; display: inline-block; font-weight: 600;
-}
-.title {
-    font-family: var(--font-serif);
-    font-size: clamp(3.5rem, 11vw, 10rem);
-    line-height: 0.85; font-weight: 400;
-}
-.title span { display: block; }
-.title .outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.6); color: transparent;
-}
-.hero-footer {
-    margin-top: 5rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;
-}
-.role { font-size: 0.7rem; letter-spacing: 0.2em; color: #888; text-transform: uppercase; }
-.scroll-indicator {
-    margin-top: 2rem; font-size: 0.6rem; letter-spacing: 0.1em;
-    opacity: 0.5; animation: bounce 2s infinite;
-}
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-10px);}
-    60% {transform: translateY(-5px);}
+    height: 100vh; 
+    width: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    position: relative; 
+    overflow: hidden;
+    background-color: #030303;
+    border-bottom: 2px dashed #444;
 }
 
-/* --- PROFILE SECTION (ABOUT ME) --- */
+/* System Top Bar */
+.hero-top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.8rem 2rem;
+    background: rgba(10, 10, 10, 0.85);
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: #777;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+.hero-top-bar .sys-title {
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+
+/* Background Image dengan Filter Sepia/Monokrom Retro */
+.hero-bg {
+    position: absolute; 
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2670&auto=format&fit=crop');
+    background-size: cover; 
+    background-position: center;
+    opacity: 0.2; 
+    filter: sepia(30%) contrast(130%) grayscale(70%);
+}
+
+/* Overlay Garis Scanline Layar CRT */
+.hero-scanline {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Grid Crosshair Background Overlay */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0);
+    background-size: 40px 40px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Content Area */
+.hero-content { 
+    z-index: 3; 
+    text-align: center; 
+    padding: 0 1rem; 
+    margin-top: 2rem;
+}
+
+/* Kotak Subtitle Diperkecil */
+.subtitle {
+    font-family: monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase; 
+    color: var(--accent-color);
+    margin-bottom: 1.2rem;
+    display: inline-block; 
+    font-weight: 600;
+    background: rgba(10, 10, 10, 0.8);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--accent-color);
+    box-shadow: 2px 2px 0px #000;
+}
+
+.prompt-symbol {
+    color: #fff;
+    animation: blink 1s step-end infinite;
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: clamp(3.5rem, 11vw, 9.5rem);
+    line-height: 0.85; 
+    font-weight: 400;
+    text-shadow: 4px 4px 0px #000;
+}
+
+.title span { 
+    display: block; 
+}
+
+.title .outline {
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7); 
+    color: transparent;
+}
+
+/* Kotak Footer Diperkecil & Dirapatkan */
+.hero-footer {
+    margin-top: 1.5rem;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0.8rem;
+}
+
+/* Retro Tags */
+.retro-tag-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.retro-tag {
+    font-family: monospace;
+    font-size: 0.55rem;
+    color: #888;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    padding: 0.2rem 0.4rem;
+    letter-spacing: 0.05em;
+}
+
+.retro-tag.highlight {
+    color: #fff;
+    border-color: #555;
+}
+
+/* Retro Scroll Indicator */
+.scroll-indicator.retro-scroll {
+    font-family: monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: var(--accent-color);
+    background: #000;
+    border: 1px solid var(--accent-color);
+    padding: 0.25rem 0.6rem;
+    box-shadow: 2px 2px 0px var(--accent-color); 
+    animation: bounceRetro 2s infinite;
+}
+
+@keyframes bounceRetro {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-4px); }
+    60% { transform: translateY(-2px); }
+}
+
+@media (max-width: 768px) {
+    .hero-top-bar .sys-loc { display: none; }
+    .hero-top-bar { justify-content: center; gap: 1rem; }
+    .title { font-size: clamp(3rem, 12vw, 5rem); }
+}
+
+/* =========================================
+   --- PROFILE SECTION (ABOUT ME) --- 
+========================================= */
 .manifesto {
     padding: 15vh 5vw; 
     background: var(--bg-color);
-    position: relative; z-index: 5;
+    position: relative; 
+    z-index: 5;
     border-top: 1px solid var(--border-color);
 }
 
@@ -104,80 +271,202 @@ body.hovering .cursor-outline {
     align-items: start;
 }
 
-/* Sidebar Profile */
+/* Hanging ID Card System */
 .profile-side {
     position: sticky;
-    top: 5rem;
+    top: 2rem;
+    height: fit-content;
+    perspective: 1000px;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+}
+
+.hanging-system {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+}
+
+.lanyard-string {
+    width: 4px;
+    height: 150vh;
+    background: #111;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    background-image: repeating-linear-gradient(45deg, #222 0, #222 2px, #111 2px, #111 4px);
+}
+
+.lanyard-clip {
+    width: 40px;
+    height: 20px;
+    background: #333;
+    border-radius: 4px;
+    margin-bottom: -10px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.id-card-body {
+    background: #0a0a0a;
+    width: 100%;
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #222;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
+    transform-origin: top center;
+    cursor: grab;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+}
+
+.id-card-body:active {
+    cursor: grabbing;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+}
+
+.card-slot {
+    width: 60px;
+    height: 8px;
+    background: #050505;
+    border-radius: 10px;
+    margin: -10px auto 20px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,1);
 }
 
 .profile-img-wrapper {
     width: 100%;
-    aspect-ratio: 4/5;
+    aspect-ratio: 1/1;
+    border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    border: 2px solid #222;
     background-color: #111;
 }
 
 .profile-img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
     filter: grayscale(100%) contrast(1.1);
     transition: filter 0.5s, transform 0.5s;
 }
 
-.profile-img:hover { filter: grayscale(0%); transform: scale(1.02); }
+.id-card-body:hover .profile-img { 
+    filter: grayscale(0%); 
+    transform: scale(1.02); 
+}
+
+.card-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.1) 40%, transparent 50%);
+    pointer-events: none;
+}
+
+.profile-identity { 
+    text-align: center; 
+}
 
 .profile-name {
     font-family: var(--font-serif);
-    font-size: 2.5rem;
+    font-size: 2rem;
     line-height: 1;
-    color: #fff;
     margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .profile-role {
-    font-size: 0.8rem;
-    color: var(--accent-color);
-    letter-spacing: 0.2em;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+    font-size: 0.75rem;
+    background: var(--accent-color);
+    color: #000;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.card-barcode {
+    margin: 1.5rem 0;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.barcode-lines {
+    height: 30px;
+    background-image: linear-gradient(90deg, #fff 0%, #fff 2%, transparent 2%, transparent 4%, #fff 4%, #fff 8%, transparent 8%);
+    background-size: 100% 100%;
+    margin-bottom: 5px;
+}
+
+.id-code { 
+    font-family: monospace; 
+    font-size: 0.7rem; 
+    color: #666; 
+    letter-spacing: 0.2em; 
 }
 
 .profile-quote {
     font-family: var(--font-serif);
+    font-size: 0.9rem;
+    text-align: center;
+    color: #888;
     font-style: italic;
-    color: #666;
-    font-size: 1.1rem;
+    border-top: 1px dashed #333;
+    padding-top: 1rem;
     line-height: 1.4;
-    border-top: 1px solid #333;
-    padding-top: 1.5rem;
 }
 
-/* Content Area */
+/* About Content */
 .content-grid {
     display: flex;
     flex-direction: column;
     gap: 4rem;
 }
 
-.text-box { max-width: 800px; }
+.text-box { 
+    max-width: 800px; 
+}
 
 .label {
-    display: block; font-size: 0.75rem; color: var(--accent-color);
-    margin-bottom: 1.2rem; text-transform: uppercase;
-    letter-spacing: 0.15em; font-weight: 600;
+    display: block; 
+    font-size: 0.75rem; 
+    color: var(--accent-color);
+    margin-bottom: 1.2rem; 
+    text-transform: uppercase;
+    letter-spacing: 0.15em; 
+    font-weight: 600;
 }
-.text-box h2 {
-    font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 3.2rem);
-    margin-bottom: 2rem; line-height: 1.1;
-}
-.text-box p { color: #999; line-height: 1.7; font-size: 1.15rem; }
 
-/* Skills List */
+.text-box h2 {
+    font-family: var(--font-serif); 
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    margin-bottom: 2rem; 
+    line-height: 1.1;
+}
+
+.text-box p { 
+    color: #999; 
+    line-height: 1.7; 
+    font-size: 1.15rem; 
+}
+
 .skill-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
+
 .skill-list li {
     font-size: 1.2rem;
     color: #ccc;
@@ -185,215 +474,522 @@ body.hovering .cursor-outline {
     border-bottom: 1px solid #222;
 }
 
-/* Experience Row */
 .xp-row {
-    display: flex; align-items: center; gap: 1.5rem;
-}
-.big-number {
-    font-family: var(--font-serif); font-size: 4rem; font-weight: 700; color: #fff;
-}
-.xp-desc {
-    font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 0.1em;
+    display: flex; 
+    align-items: center; 
+    gap: 1.5rem;
 }
 
-/* --- STACKED PROJECTS --- */
-/* --- EDITORIAL ZIG-ZAG SECTION --- */
+.big-number {
+    font-family: var(--font-serif); 
+    font-size: 4rem; 
+    font-weight: 700; 
+    color: #fff;
+}
+
+.xp-desc {
+    font-size: 0.9rem; 
+    color: #888; 
+    text-transform: uppercase; 
+    letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+    .manifesto-container { grid-template-columns: 1fr; gap: 3rem; }
+    .profile-side { position: relative; top: 0; width: 100%; margin-bottom: 3rem; }
+    .hanging-system { width: 100%; max-width: 350px; margin: 0 auto; }
+    .lanyard-string { display: none; }
+}
+
+/* =========================================
+   --- EDITORIAL RETRO BRUTALISM (PROJECTS) --- 
+========================================= */
 .editorial-section {
     padding: 15vh 5vw;
     background: var(--bg-color);
     position: relative;
     z-index: 5;
-    border-top: 1px solid var(--border-color);
+    border-top: 2px dashed #444;
 }
 
-.editorial-header {
-    margin-bottom: 8rem;
-    text-align: center;
-}
-
-.editorial-header h2 {
-    font-family: var(--font-serif);
-    font-size: 3rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-}
-
-.editorial-header p {
-    color: var(--accent-color);
+/* Header Retro */
+.retro-header {
+    margin-bottom: 5rem;
+    font-family: monospace;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.8rem;
 }
 
-/* Container */
-.editorial-container {
+.retro-header h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.retro-header p {
+    color: #888;
+    letter-spacing: 0.1em;
+    font-size: 1rem;
+}
+
+.typing-effect::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Grid Projects */
+.retro-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+
+/* Retro Card (OS Window Style) */
+.retro-card {
+    background: #0a0a0a;
+    border: 2px solid #555;
+    box-shadow: 10px 10px 0px var(--accent-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
     flex-direction: column;
-    gap: 15vh; /* Jarak jauh antar projek agar eksklusif */
 }
 
-/* Item Wrapper */
-.editorial-item {
+.retro-card:hover {
+    transform: translate(5px, 5px);
+    box-shadow: 5px 5px 0px var(--accent-color);
+    border-color: #fff;
+}
+
+/* Window Title Bar */
+.window-bar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 5vw;
-}
-
-/* ZIG-ZAG Logic: Membalik urutan untuk item genap */
-.editorial-item.reverse {
-    flex-direction: row-reverse;
-}
-
-/* Image Side */
-.e-img-wrapper {
-    flex: 1.2; /* Gambar sedikit lebih lebar dari teks */
-    height: 70vh; /* Tinggi gambar portrait/tall */
-    overflow: hidden;
-    position: relative;
-    background-color: #111;
-}
-
-.e-img-wrapper img {
-    width: 100%;
-    height: 120%; /* Lebih tinggi dari container untuk efek Parallax */
-    object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.5s;
-}
-
-.editorial-item:hover .e-img-wrapper img {
-    filter: grayscale(0%); /* Berwarna saat hover */
-}
-
-/* Content Side */
-.e-content {
-    flex: 1;
-    padding: 2rem 0;
-}
-
-.p-number {
-    display: block;
-    font-family: var(--font-serif);
-    font-size: 4rem;
-    color: #222; /* Samar gelap */
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1;
-}
-
-.p-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 4vw, 4.5rem);
-    line-height: 1;
-    color: #fff;
-    margin-bottom: 1.5rem;
-}
-
-.p-role {
-    display: inline-block;
+    align-items: center;
+    padding: 0.6rem 1rem;
+    background: #222;
+    border-bottom: 2px solid #555;
+    font-family: monospace;
     font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent-color);
-    margin-bottom: 2rem;
-    border: 1px solid var(--accent-color);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
+    color: #aaa;
 }
 
-.p-desc {
-    color: #999;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    max-width: 90%;
-}
-
-.p-tags {
+.window-controls {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #222;
-}
-
-.p-tags li {
-    font-size: 0.85rem;
+    gap: 0.5rem;
+    font-weight: bold;
     color: #666;
-    position: relative;
 }
 
-/* Bullet point kecil antar tags */
-.p-tags li:not(:last-child)::after {
-    content: "•";
-    position: absolute;
-    right: -12px;
-    color: #333;
-}
-
-/* Tombol Read Case Study */
-.btn-line {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
+.retro-card:hover .window-bar {
+    background: #333;
     color: #fff;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 5px;
-    transition: all 0.3s;
 }
 
-.btn-line:hover {
+/* Image Wrapper */
+.retro-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 2px solid #555;
+}
+
+.retro-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(40%) contrast(120%) grayscale(80%);
+    transition: filter 0.4s;
+}
+
+.retro-card:hover .retro-img-wrapper img {
+    filter: sepia(0%) contrast(100%) grayscale(0%);
+}
+
+/* Content Area */
+.retro-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.retro-badge {
+    align-self: flex-start;
+    font-family: monospace;
+    background: #222;
+    color: var(--accent-color);
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+    border: 1px solid var(--accent-color);
+    margin-bottom: 1.2rem;
+}
+
+.retro-title {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+}
+
+.retro-desc {
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+/* Retro Button */
+.retro-btn {
+    align-self: flex-start;
+    font-family: monospace;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000;
+    background: var(--accent-color);
+    padding: 0.6rem 1.2rem;
+    text-transform: uppercase;
+    transition: background 0.3s, color 0.3s;
+    border: 2px solid transparent;
+}
+
+.retro-btn:hover {
+    background: #000;
     color: var(--accent-color);
     border-color: var(--accent-color);
 }
 
-/* Responsif Mobile */
-@media (max-width: 900px) {
-    .editorial-item, .editorial-item.reverse {
-        flex-direction: column; /* Tumpuk ke bawah di HP */
-        gap: 2rem;
-    }
-    .e-img-wrapper {
-        width: 100%;
-        height: 50vh; /* Gambar lebih pendek di HP */
-    }
-    .p-title { font-size: 2.5rem; }
-    .p-desc { max-width: 100%; }
+@media (max-width: 1024px) {
+    .retro-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* --- FOOTER (PERSONAL) --- */
-.basecamp {
-    padding: 5rem 5vw 2rem; background: #020202; min-height: 80vh;
-    display: flex; flex-direction: column; justify-content: space-between;
+@media (max-width: 768px) {
+    .retro-grid { grid-template-columns: 1fr; }
 }
-.basecamp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.bc-col h4 {
-    color: #444; text-transform: uppercase; font-size: 0.75rem;
-    letter-spacing: 0.1em; margin-bottom: 2rem;
-}
-.bc-col a { display: block; font-size: 1.5rem; margin-bottom: 0.5rem; transition: color 0.3s; }
-.email-link { font-family: var(--font-serif); font-size: 2rem !important; }
-.bc-col p { font-size: 1.2rem; color: #888; line-height: 1.5; }
-.bc-col a:hover { color: var(--accent-color); }
 
-.bc-bottom { margin-top: 5rem; border-top: 1px solid #111; padding-top: 2rem; }
-.bc-bottom h1 {
-    font-family: var(--font-serif); font-size: clamp(3rem, 13vw, 12rem);
-    line-height: 0.8; color: #111; text-align: center;
-    white-space: nowrap; user-select: none; transition: color 0.5s;
+/* =========================================
+   --- RETRO TOOLS / BRANDS SECTION --- 
+========================================= */
+.tools-section {
+    padding: 8rem 5vw;
+    background: #020202;
+    border-top: 2px dashed #333;
 }
-.bc-bottom:hover h1 { color: #1a1a1a; }
-.copyright { text-align: center; margin-top: 2rem; color: #333; font-size: 0.8rem; }
+
+.tools-header {
+    text-align: center;
+    margin-bottom: 5rem; /* Jarak diperbesar sedikit agar lebih lega */
+}
+
+.tools-header h2 {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.tools-header h2 span {
+    color: #fff;
+    font-weight: 800;
+}
+
+.tools-sub {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+/* Grid Layout */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2.5rem 1.5rem; /* Jarak vertikal diperbesar agar lebih elegan */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tool Card Style (Elegan, Tanpa Kotak) */
+.tool-card {
+    background: transparent; /* Menghilangkan background */
+    border: none;            /* Menghilangkan garis tepi */
+    box-shadow: none;        /* Menghilangkan bayangan */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    transition: all 0.4s ease; /* Transisi diperhalus */
+    cursor: pointer;
+    text-align: center; 
+}
+
+/* Tool Logo Fix */
+.tool-card img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    /* UPDATE: Menampilkan warna asli, tapi diredupkan (transparan 50%) */
+    filter: opacity(0.5); 
+    transition: all 0.4s ease;
+    margin: 0 auto; 
+}
+
+/* Label Nama Tool */
+.tool-name {
+    font-family: monospace;
+    font-size: 0.75rem; 
+    color: #888; 
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    transition: all 0.4s ease;
+    text-align: center; 
+    line-height: 1.4;
+}
+
+/* Hover Effect (Floating & Glowing) */
+.tool-card:hover {
+    background: transparent;
+    transform: translateY(-8px); 
+}
+
+.tool-card:hover img {
+    /* UPDATE: Mengembalikan kecerahan warna asli ke 100% penuh */
+    filter: opacity(1); 
+    transform: scale(1.15); 
+}
+
+.tool-card:hover .tool-name {
+    color: var(--accent-color); 
+    font-weight: 600;
+    letter-spacing: 0.2em; 
+}
 
 /* Responsive */
-@media (max-width: 900px) {
-    .manifesto-container { grid-template-columns: 1fr; gap: 3rem; }
-    .profile-side { position: relative; top: 0; max-width: 350px; }
-    .card-content { flex-direction: column-reverse; height: auto; }
-    .card-text { padding: 2rem; border-right: none; }
-    .card-visual { height: 300px; }
-    .basecamp-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .email-link { font-size: 1.5rem !important; }
+@media (max-width: 1024px) {
+    .tools-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 3rem 1.5rem; 
+    }
+}
+
+@media (max-width: 600px) {
+    .tools-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 2rem 1rem; 
+    }
+}
+
+/* =========================================
+   --- BASECAMP / CONTACT (TERMINAL MINIMALIS) --- 
+========================================= */
+.basecamp {
+    padding: 6rem 5vw; /* Padding disesuaikan, min-height dihapus agar tidak ada ruang kosong raksasa */
+    background: #020202; 
+    display: flex; 
+    flex-direction: column; 
+    border-top: 1px solid #111;
+}
+
+.basecamp-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); /* 3 Kolom dibagi rata sempurna */
+    gap: 3rem; 
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.bc-col h4 {
+    color: #555; 
+    text-transform: uppercase; 
+    font-size: 0.75rem;
+    letter-spacing: 0.15em; 
+    margin-bottom: 2rem;
+    font-family: monospace; /* Diseragamkan ke monospace */
+    font-weight: 600;
+}
+
+/* --- KOLOM KIRI: SOCIALS --- */
+.social-list li {
+    margin-bottom: 1rem;
+}
+
+.social-list a {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #999;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.social-list a:hover {
+    color: var(--accent-color);
+    transform: translateX(8px); /* Efek geser kanan */
+}
+
+/* --- KOLOM TENGAH: PROMPT --- */
+.center-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.prompt-text {
+    font-family: monospace; /* Diubah dari serif ke monospace */
+    font-size: 0.9rem; /* Ukuran disamakan dengan teks kolom lain */
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Tombol terminal interaktif (bisa diklik) */
+.email-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    background: transparent;
+    border: 1px solid var(--accent-color); /* Garis tipis kotak tombol */
+    padding: 0.5rem 1rem; /* Ruang untuk area klik */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer; /* Mengubah kursor jadi bentuk jari */
+}
+
+.email-cta .cta-text {
+    font-size: inherit;
+    color: inherit;
+}
+
+.email-cta .cta-icon {
+    font-size: inherit;
+    color: inherit;
+    animation: blink 1s step-end infinite;
+}
+
+/* Efek saat tombol di-hover (Warna berbalik & timbul sedikit) */
+.email-cta:hover {
+    background: var(--accent-color);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 0px #000; /* Memberi dimensi saat disentuh */
+}
+
+/* --- KOLOM KANAN: ADDRESS --- */
+address {
+    font-family: monospace; /* Diubah ke monospace */
+    font-style: normal;
+    font-size: 0.9rem; /* Ukuran disamakan */
+    color: #888;
+    line-height: 1.8;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .basecamp-grid { 
+        grid-template-columns: 1fr; 
+        gap: 3rem; 
+    }
+}
+
+/* =========================================
+   --- RETRO FOOTER / SYSTEM STATUS BAR --- 
+========================================= */
+.retro-footer {
+    padding: 1.5rem 5vw;
+    background: #050505; 
+    border-top: 2px dashed #333; 
+    font-family: monospace;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: 5rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Indikator Status */
+.sys-status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #666;
+    letter-spacing: 0.1em;
+}
+
+/* Animasi Lampu Menyala (Blinking Dot) */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.7); } 
+    70% { box-shadow: 0 0 0 8px rgba(194, 65, 12, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(194, 65, 12, 0); }
+}
+
+/* Teks Copyright Utama */
+.copyright-text {
+    color: #888;
+    letter-spacing: 0.15em;
+    text-align: center;
+}
+
+.copyright-text .copy-symbol {
+    color: var(--accent-color);
+    font-size: 1.1em;
+}
+
+.copyright-text .year {
+    color: #fff;
+    font-weight: bold;
+}
+
+.copyright-text .separator {
+    color: #444;
+    margin: 0 0.5rem;
+}
+
+/* Teks Status Ujung Kanan */
+.footer-code {
+    color: #555;
+    letter-spacing: 0.2em;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 1.2rem;
+    }
+    
+    .sys-status, .footer-code {
+        justify-content: center;
+        font-size: 0.75rem;
+    }
 }
