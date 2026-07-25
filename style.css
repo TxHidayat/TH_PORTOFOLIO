@@ -1008,6 +1008,13 @@ address {
         cursor: auto !important;
     }
 
+    /* 2. DYNAMIC VIEWPORT HEIGHT (Agar tinggi pas di layar HP) */
+    .hero {
+        height: 100dvh !important; 
+        /* Coba ubah ke 85dvh atau 90dvh jika ingin Hero sedikit lebih pendek */
+    }
+    /* ... sisa kode responsive lainnya ... */
+
     /* 2. Hero Section */
     .hero-top-bar {
         font-size: 0.75rem;
