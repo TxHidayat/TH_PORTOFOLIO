@@ -993,3 +993,86 @@ address {
         font-size: 0.75rem;
     }
 }
+
+/* =========================================
+   RESPONSIVE MOBILE STYLES (RETRO BRUTALISM)
+========================================= */
+@media (max-width: 768px) {
+
+    /* 1. Atur Kursor Custom (Nonaktifkan di HP agar tidak mengganggu touch) */
+    .cursor-dot,
+    .cursor-outline {
+        display: none !important;
+    }
+    body {
+        cursor: auto !important;
+    }
+
+    /* 2. Hero Section */
+    .hero-top-bar {
+        font-size: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .hero-content h1.title {
+        font-size: 2.8rem !important; /* Perkecil ukuran nama agar tidak terpotong */
+        line-height: 1.1;
+    }
+    .retro-tag-group {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .retro-tag {
+        font-size: 0.8rem;
+    }
+
+    /* 3. Section About / Manifesto */
+    .manifesto-container {
+        flex-direction: column !important; /* Tumpuk ID Card dan Teks secara vertikal */
+        gap: 30px;
+    }
+    .profile-side {
+        width: 100% !important;
+    }
+    .hanging-system {
+        transform: scale(0.9); /* Sedikit atur skala ID card agar pas di layar HP */
+    }
+    .content-side.retro-panel {
+        width: 100% !important;
+        padding: 20px 15px !important;
+    }
+    .content-grid h2 {
+        font-size: 1.5rem !important;
+    }
+
+    /* 4. Section Projects (Grid ke 1 Kolom) */
+    .retro-grid {
+        grid-template-columns: 1fr !important; /* Paksa kartu proyek berbaris 1 kolom ke bawah */
+        gap: 20px;
+    }
+    .retro-card {
+        width: 100% !important;
+    }
+    .retro-title {
+        font-size: 1.25rem !important;
+    }
+
+    /* 5. Section Tools (Grid 2 Kolom untuk HP) */
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* Buat kotak tools 2 kolom */
+        gap: 12px;
+    }
+    .tool-card {
+        padding: 15px 10px !important;
+    }
+
+    /* 6. Basecamp / Contact & Footer */
+    .basecamp-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px;
+    }
+    .bc-bottom h1 {
+        font-size: 2rem !important;
+    }
+}
