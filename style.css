@@ -502,6 +502,32 @@ body.hovering .cursor-outline {
 }
 
 /* =========================================
+   CV DOWNLOAD BUTTON (ID CARD)
+========================================= */
+.cv-dl-btn {
+    display: block;
+    margin-top: 15px;
+    padding: 10px;
+    font-size: 0.75rem;
+    font-family: monospace; /* Font gaya kode */
+    text-align: center;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    background: transparent;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.cv-dl-btn:hover {
+    background: #d94e18; /* Warna oranye aksen khas retro Anda */
+    color: #000;
+    border: 1px solid #d94e18;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(217, 78, 24, 0.5); /* Efek glow tipis */
+}
+
+/* =========================================
    --- EDITORIAL RETRO BRUTALISM (PROJECTS) --- 
 ========================================= */
 .editorial-section {
@@ -670,6 +696,45 @@ body.hovering .cursor-outline {
 
 @media (max-width: 768px) {
     .retro-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================
+   VIEW MORE PROJECTS BUTTON (COMPACT & LEFT ALIGNED)
+========================================= */
+.view-more-container {
+    display: flex;
+    justify-content: flex-start; /* Mendorong tombol ke kiri agar sejajar dengan grid pertama */
+    margin-top: 5px; /* Jarak atas sedikit dirapatkan */
+    width: 100%;
+}
+
+.view-more-btn {
+    display: inline-block;
+    padding: 10px 24px; /* Ukuran padding (ruang dalam) diperkecil */
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff; 
+    font-family: monospace;
+    font-size: 0.8rem; /* Ukuran teks diperkecil */
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px #d94e18; /* Efek bayangan juga disesuaikan ukurannya */
+    transition: all 0.2s ease;
+}
+
+.view-more-btn:hover {
+    background-color: #d94e18; 
+    color: #000; 
+    border-color: #d94e18;
+    box-shadow: 4px 4px 0px #fff; 
+    transform: translate(-2px, -2px); 
+}
+
+.view-more-btn:active {
+    transform: translate(4px, 4px); /* Efek klik disesuaikan */
+    box-shadow: 0px 0px 0px transparent; 
 }
 
 /* =========================================
