@@ -1159,3 +1159,50 @@ address {
 
 }
 
+/* =========================================
+   EASTER EGG: FULL BODY SKULL & WOLF CHASE
+========================================= */
+.pixel-chase-container {
+    width: 100%;
+    overflow: hidden; 
+    position: relative;
+    height: 60px; /* Tinggi wadah dinaikkan agar muat untuk gambar full body */
+    
+    /* Menarik wadah ke atas agar karakter pas berlari di atas garis */
+    margin-top: -60px; 
+    pointer-events: none; 
+}
+
+.pixel-chase-run {
+    display: flex;
+    align-items: flex-end; /* Memastikan kaki kedua karakter sejajar menapak di bawah */
+    gap: 30px; /* Jarak antara serigala dan tengkorak diperlebar sedikit */
+    position: absolute;
+    bottom: 0;
+    
+    /* Kecepatan lari (10 detik dari ujung ke ujung) */
+    animation: runChase 10s linear infinite; 
+}
+
+/* Mengatur ukuran gambar karakter */
+.pixel-wolf, .pixel-skull {
+    height: 50px; /* Atur seberapa besar karakter yang Anda inginkan (sesuaikan jika kurang pas) */
+    width: auto;
+    
+    /* 💡 TRIK RAHASIA: Memastikan gambar pixel tetap tajam (kotak-kotak), tidak blur! */
+    image-rendering: pixelated; 
+    
+    /* Membalikkan arah menghadap ke kiri. 
+       (HAPUS BARIS INI JIKA GAMBAR ASLI ANDA SUDAH MENGHADAP KIRI) */
+    transform: scaleX(-1); 
+}
+
+@keyframes runChase {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-300px); /* Ditarik lebih jauh ke kiri agar gambar benar-benar hilang dari layar */
+    }
+}
+
