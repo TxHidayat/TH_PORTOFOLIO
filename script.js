@@ -212,3 +212,67 @@ gsap.from('.bc-bottom h1', {
         start: 'top 95%'
     }
 });
+
+/* =========================================
+   8. DYNAMIC SYSTEM STATUS (TIME & BATTERY)
+========================================= */
+
+// --- A. SENSOR WAKTU SIANG & MALAM ---
+const timeEl = document.getElementById('sys-time');
+
+if (timeEl) {
+    // Jalankan pembaruan setiap 1 detik (1000ms)
+    setInterval(() => {
+        const now = new Date();
+        
+        // Ambil komponen waktu
+        let hours = now.getHours();
+        let mins = now.getMinutes();
+        let secs = now.getSeconds();
+        
+        // Deteksi Siang (06:00 - 17:59) atau Malam
+        const isDay = hours >= 6 && hours < 18;
+        const icon = isDay ? '☀️' : '🌙';
+
+        // Tambahkan angka 0 di depan jika di bawah 10 (contoh: 09:05)
+        hours = hours < 10 ? '0' + hours : hours;
+        mins = mins < 10 ? '0' + mins : mins;
+        secs = secs < 10 ? '0' + secs : secs;
+
+        // Ambil komponen tanggal
+        const day = now.getDate().toString().padStart(2, '0');
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const year = now.getFullYear();
+
+        // Cetak ke layar HTML
+        timeEl.textContent = `[ ${icon} ${day}/${month}/${year} - ${hours}:${mins}:${secs} ]`;
+    }, 1000);
+}
+
+
+// --- B. SENSOR BATERAI PERANGKAT ---
+const batEl = document.getElementById('sys-bat');
+
+if (batEl) {
+    // Cek apakah browser pengunjung mendukung fitur baca baterai
+    if ('getBattery' in navigator) {
+        navigator.getBattery().then(battery => {
+            
+            const updateBattery = () => {
+                const level = Math.round(battery.level * 100);
+                // Munculkan ikon petir jika sedang dicas
+                const charging = battery.charging ? '⚡' : ''; 
+                batEl.textContent = `[ PWR: ${level}% ${charging}]`;
+            };
+
+            updateBattery(); // Jalankan saat pertama kali dimuat
+            
+            // Dengarkan perubahan jika kabel charger dicabut/dicolok
+            battery.addEventListener('levelchange', updateBattery);
+            battery.addEventListener('chargingchange', updateBattery);
+        });
+    } else {
+        // Fallback jika dibuka di perangkat yang tidak mendukung (seperti Safari/iPhone)
+        batEl.textContent = `[ PWR: DIRECT ]`; 
+    }
+}

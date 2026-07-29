@@ -17,11 +17,19 @@
     <div class="cursor-outline"></div>
 
 <section class="hero" id="home">
+    
         <!-- System Bar Paling Atas -->
-        <div class="hero-top-bar">
-            <span class="sys-label">[ SYS_VER: 2.0.26 ]</span>
-            <span class="sys-title">TAUFIK_HIDAYAT // PORTFOLIO</span>
-            <span class="sys-loc">LOC: INDONESIA [8.4095° S, 115.1889° E]</span>
+        <div class="hero-top-bar" style="display: flex; justify-content: space-between; align-items: center; width: 100%; font-family: monospace; font-size: 0.8rem; color: rgba(255,255,255,0.7);">
+            
+            <!-- KIRI: Jam & Kalender (Diberi flex 1 dan rata kiri) -->
+            <span id="sys-time" style="flex: 1; text-align: left;">[ INITIATING_TIME... ]</span>
+            
+            <!-- TENGAH: Nama (Diberi flex 1 dan rata tengah sempurna) -->
+            <span style="flex: 1; text-align: center; font-weight: bold; color: white;">TAUFIK_HIDAYAT // PORTFOLIO</span>
+            
+            <!-- KANAN: Status Baterai (Diberi flex 1 dan rata kanan) -->
+            <span id="sys-bat" style="flex: 1; text-align: right;">[ CHK_PWR... ]</span>
+
         </div>
 
         <div class="hero-bg"></div>

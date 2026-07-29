@@ -1147,4 +1147,13 @@ address {
     .bc-bottom h1 {
         font-size: 2rem !important;
     }
+
+    /* Memaksa baris atas hero sejajar kiri semua di HP */
+    .hero-top-bar span {
+        text-align: left !important;
+        flex: none !important;
+        width: 100%;
+    }
+
 }
+
