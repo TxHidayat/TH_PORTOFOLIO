@@ -276,3 +276,21 @@ if (batEl) {
         batEl.textContent = `[ PWR: DIRECT ]`; 
     }
 }
+
+/* =========================================
+   10. BLUEPRINT SCANNER SPLASH SCREEN
+========================================= */
+window.addEventListener('DOMContentLoaded', () => {
+    const splash = document.getElementById('splash-screen');
+    
+    if (splash) {
+        document.body.style.overflow = 'hidden'; 
+        
+        // Animasi CSS berjalan 1.8 detik (1800ms). 
+        // Kita hancurkan kontainer splash di 1.85 detik agar bersih dari memori.
+        setTimeout(() => {
+            splash.classList.add('splash-hidden');
+            document.body.style.overflow = 'auto'; 
+        }, 1850);
+    }
+});

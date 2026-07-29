@@ -13,6 +13,69 @@
 }
 
 /* =========================================
+   SPLASH SCREEN (BLUEPRINT SCANNER)
+========================================= */
+#splash-screen {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: auto; /* Mengunci layar agar tidak bisa diklik/scroll saat loading */
+}
+
+/* Latar belakang hitam dengan garis kotak-kotak (Wireframe) */
+.blueprint-wipe {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: #050505;
+    background-image:
+        linear-gradient(rgba(217, 78, 24, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(217, 78, 24, 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+    
+    /* Animasi memotong layar dari atas ke bawah */
+    animation: wipeDown 1.8s ease-in-out forwards;
+}
+
+/* Garis Laser Oranye Neon */
+.scanner-laser {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 3px;
+    background-color: #d94e18;
+    box-shadow: 0 0 15px #d94e18, 0 0 30px #d94e18, 0 0 45px #fff;
+    
+    /* Durasi turunnya laser disamakan persis dengan durasi potong layar */
+    animation: scanLaser 1.8s ease-in-out forwards;
+}
+
+/* Menyapu layar dari utuh menjadi terpotong penuh ke bawah */
+@keyframes wipeDown {
+    0% { clip-path: inset(0 0 0 0); }
+    100% { clip-path: inset(100% 0 0 0); }
+}
+
+/* Pergerakan laser dari atas 0% ke bawah 100% */
+@keyframes scanLaser {
+    0% { top: 0; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* Class penutup total */
+.splash-hidden {
+    display: none !important;
+}
+
+/* =========================================
    --- RESET & GLOBAL STYLES --- 
 ========================================= */
 * { 
