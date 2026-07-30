@@ -309,7 +309,6 @@
             </div>
         </div>
     </section>
-    </footer>
 
     <!-- BAGIAN FOOTER SYSTEM STATUS BAR -->
     <footer class="retro-footer">
@@ -334,6 +333,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    
+<!-- === TAMBAHAN VANILLA TILT (PENGAMAN KURSOR & GYRO) === -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script>
+        // Dibungkus try-catch agar jika ada delay dari Vanilla-Tilt, 
+        // file script.js (kursor kustom Anda) tetap dieksekusi dengan aman.
+        try {
+            const card = document.querySelector("#swing-card");
+            
+            if (card) {
+                // Deteksi HP atau PC
+                const isMobile = window.matchMedia("(max-width: 900px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                
+                // Elemen dummy untuk menonaktifkan geseran jari di HP
+                const dummyElement = document.createElement("div"); 
+
+                VanillaTilt.init(card, {
+                    max: 12,
+                    speed: 600,
+                    perspective: 1000,
+                    easing: "cubic-bezier(.03,.98,.52,.99)",
+                    glare: true,
+                    "max-glare": 0.15,
+                    
+                    // Jika di HP, alihkan pembacaan sentuhan ke dummy (kartu tidak bisa digeser jari)
+                    // Jika di PC, baca kursor mouse secara normal
+                    "mouse-event-element": isMobile ? dummyElement : card,
+                    
+                    // Aktifkan Gyroscope HANYA di HP
+                    gyroscope: isMobile,
+                    gyroscopeMinAngleX: -35,
+                    gyroscopeMaxAngleX: 35,
+                    gyroscopeMinAngleY: -35,
+                    gyroscopeMaxAngleY: 35
+                });
+            }
+        } catch (error) {
+            console.error("Vanilla Tilt Error:", error);
+        }
+    </script>
+    <!-- ======================================================= -->
+
+    <!-- PASTIKAN FILE KURSOR ANDA TETAP ADA DI BAWAH INI -->
     <script src="script.js"></script>
+</body>
+</html>
 </body>
 </html>
