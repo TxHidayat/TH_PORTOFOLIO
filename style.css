@@ -1269,3 +1269,38 @@ address {
     }
 }
 
+/* ============================================================
+   EFEK 3D VANILLA-TILT UNTUK ID CARD (ID: BONYOS-001)
+   ============================================================ */
+
+/* 1. Mengaktifkan ruang 3D pada kartu */
+#swing-card {
+    transform-style: preserve-3d;
+    /* Catatan: Pastikan tidak ada 'overflow: hidden;' di kelas .retro-id 
+       karena bisa memotong efek 3D-nya */
+}
+
+/* 2. Mengatur ketinggian melayang (Depth) untuk masing-masing elemen */
+
+/* Foto profil melayang paling tinggi agar mencolok */
+#swing-card .profile-img-wrapper {
+    transform: translateZ(50px);
+}
+
+/* Nama dan Role (Dev_Design) melayang di tingkat menengah */
+#swing-card .profile-identity {
+    transform: translateZ(40px);
+}
+
+/* Barcode dan Quote melayang tipis di atas dasar kartu */
+#swing-card .card-barcode,
+#swing-card .profile-quote {
+    transform: translateZ(20px);
+}
+
+/* Tombol Download CV melayang cukup tinggi agar mengundang interaksi klik */
+#swing-card .cv-dl-btn {
+    transform: translateZ(45px);
+    /* Opsional: Tambahkan sedikit bayangan agar efek melayangnya lebih terasa */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+}
