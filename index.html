@@ -309,6 +309,7 @@
             </div>
         </div>
     </section>
+    </footer>
 
     <!-- BAGIAN FOOTER SYSTEM STATUS BAR -->
     <footer class="retro-footer">
@@ -333,59 +334,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    
-    <!-- === TAMBAHAN VANILLA TILT (MEMISAHKAN PC & MOBILE) === -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const card = document.querySelector("#swing-card");
-            
-            if (card) {
-                // 1. Deteksi otomatis apakah ini Smartphone atau PC
-                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 900;
-
-                if (isMobile) {
-                    // ==========================================
-                    // KHUSUS SMARTPHONE: MURNI GYROSCOPE
-                    // ==========================================
-                    VanillaTilt.init(card, {
-                        max: 15,
-                        speed: 800,               
-                        perspective: 1000,
-                        easing: "cubic-bezier(.03,.98,.52,.99)",
-                        glare: true,
-                        "max-glare": 0.15,
-                        gyroscope: true,          
-                        gyroscopeMinAngleX: -35,
-                        gyroscopeMaxAngleX: 35,
-                        gyroscopeMinAngleY: -35,
-                        gyroscopeMaxAngleY: 35
-                    });
-
-                    // TRIK RAHASIA: Blokir Vanilla-Tilt dari membaca sentuhan jari/scroll di layar HP
-                    card.addEventListener("mousemove", (e) => e.stopImmediatePropagation(), true);
-                    card.addEventListener("touchmove", (e) => e.stopImmediatePropagation(), true);
-                    card.addEventListener("mouseenter", (e) => e.stopImmediatePropagation(), true);
-                    
-                } else {
-                    // ==========================================
-                    // KHUSUS LAPTOP / PC: MURNI KURSOR MOUSE
-                    // ==========================================
-                    VanillaTilt.init(card, {
-                        max: 12,
-                        speed: 600,
-                        perspective: 1000,
-                        easing: "cubic-bezier(.03,.98,.52,.99)",
-                        glare: true,
-                        "max-glare": 0.15,
-                        gyroscope: false          // GYRO DIMATIKAN TOTAL
-                    });
-                }
-            }
-        });
-    </script>
-    <!-- ======================================================== -->
-
     <script src="script.js"></script>
 </body>
 </html>
