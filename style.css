@@ -925,25 +925,28 @@ body.hovering .cursor-outline {
         gap: 2rem 1rem; 
     }
 }
-
 /* =========================================
    --- BASECAMP / CONTACT (TERMINAL MINIMALIS) --- 
 ========================================= */
 .basecamp {
-    padding: 6rem 5vw; /* Padding disesuaikan, min-height dihapus agar tidak ada ruang kosong raksasa */
+    padding: 6rem 5vw; 
     background: #020202; 
-    display: flex; 
-    flex-direction: column; 
     border-top: 1px solid #111;
 }
 
 .basecamp-grid { 
     display: grid; 
     grid-template-columns: repeat(3, 1fr); /* 3 Kolom dibagi rata sempurna */
-    gap: 3rem; 
+    gap: 3rem; /* Jarak antar kolom sama rata */
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
+}
+
+/* Pengaturan dasar untuk setiap kolom */
+.bc-col {
+    display: flex;
+    flex-direction: column;
 }
 
 .bc-col h4 {
@@ -952,11 +955,22 @@ body.hovering .cursor-outline {
     font-size: 0.75rem;
     letter-spacing: 0.15em; 
     margin-bottom: 2rem;
-    font-family: monospace; /* Diseragamkan ke monospace */
+    font-family: monospace; 
     font-weight: 600;
 }
 
-/* --- KOLOM KIRI: SOCIALS --- */
+/* --- 1. KOLOM KIRI (SOSIAL MEDIA): Rata Kiri --- */
+.basecamp-grid .bc-col:nth-child(1) {
+    align-items: flex-start;
+    text-align: left;
+}
+
+.social-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
 .social-list li {
     margin-bottom: 1rem;
 }
@@ -967,72 +981,84 @@ body.hovering .cursor-outline {
     color: #999;
     transition: color 0.3s, transform 0.3s;
     display: inline-block;
+    text-decoration: none;
 }
 
 .social-list a:hover {
-    color: var(--accent-color);
-    transform: translateX(8px); /* Efek geser kanan */
+    color: var(--accent-color, #ff4500); /* Ganti var jika tidak pakai variabel CSS */
+    transform: translateX(8px);
 }
 
-/* --- KOLOM TENGAH: PROMPT --- */
+/* --- 2. KOLOM TENGAH (PESAN): Rata Tengah --- */
 .center-prompt {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Menengahkan judul, teks, dan tombol */
+    text-align: center;
 }
 
 .prompt-text {
-    font-family: monospace; /* Diubah dari serif ke monospace */
-    font-size: 0.9rem; /* Ukuran disamakan dengan teks kolom lain */
+    font-family: monospace; 
+    font-size: 0.9rem; 
     color: #ccc;
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
 
-/* Tombol terminal interaktif (bisa diklik) */
 .email-cta {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.8rem;
     font-family: monospace;
     font-size: 0.85rem;
-    color: var(--accent-color);
+    color: var(--accent-color, #ff4500);
     background: transparent;
-    border: 1px solid var(--accent-color); /* Garis tipis kotak tombol */
-    padding: 0.5rem 1rem; /* Ruang untuk area klik */
+    border: 1px solid var(--accent-color, #ff4500); 
+    padding: 0.5rem 1rem; 
     text-transform: uppercase;
     letter-spacing: 0.1em;
     transition: all 0.3s ease;
     text-decoration: none;
-    cursor: pointer; /* Mengubah kursor jadi bentuk jari */
+    cursor: pointer; 
 }
 
-.email-cta .cta-text {
-    font-size: inherit;
-    color: inherit;
+.email-cta:hover {
+    background: var(--accent-color, #ff4500);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 2px 2px 0px #000; 
 }
 
 .email-cta .cta-icon {
-    font-size: inherit;
-    color: inherit;
     animation: blink 1s step-end infinite;
 }
 
-/* Efek saat tombol di-hover (Warna berbalik & timbul sedikit) */
-.email-cta:hover {
-    background: var(--accent-color);
-    color: #000;
-    transform: translateY(-2px);
-    box-shadow: 2px 2px 0px #000; /* Memberi dimensi saat disentuh */
+/* --- 3. KOLOM KANAN (ALAMAT): Rata Kanan --- */
+.basecamp-grid .bc-col:nth-child(3) {
+    align-items: flex-end; /* Memaksa konten menempel ke kanan */
+    text-align: right;     /* Teks rata kanan */
 }
 
-/* --- KOLOM KANAN: ADDRESS --- */
 address {
-    font-family: monospace; /* Diubah ke monospace */
+    font-family: monospace; 
     font-style: normal;
-    font-size: 0.9rem; /* Ukuran disamakan */
+    font-size: 0.9rem; 
     color: #888;
     line-height: 1.8;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .basecamp-grid { 
+        grid-template-columns: 1fr; /* Jadi 1 kolom bersusun ke bawah di HP */
+        gap: 4rem; 
+    }
+    
+    /* Mengembalikan semua kolom jadi rata tengah saat di HP agar lebih rapi */
+    .basecamp-grid .bc-col:nth-child(1),
+    .basecamp-grid .bc-col:nth-child(3) {
+        align-items: center;
+        text-align: center;
+    }
 }
 
 /* --- RESPONSIVE --- */
