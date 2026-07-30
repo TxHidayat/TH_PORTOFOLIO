@@ -382,12 +382,20 @@ body.hovering .cursor-outline {
     border-radius: 16px;
     border: 1px solid #222;
     box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
-    transform-origin: top center;
+    
+    /* KEMBALIKAN INI: Agar kartu berayun/miring dari titik klip di atas */
+    transform-origin: top center !important; 
+    
     cursor: grab;
     user-select: none;
     position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.3s;
+    
+    /* MENGAKTIFKAN 3D */
+    transform-style: preserve-3d; 
+    will-change: transform; 
+    
+    /* PENTING: Batasi transisi HANYA untuk shadow. Jangan biarkan CSS mengontrol 'transform' */
+    transition: box-shadow 0.3s ease !important;
 }
 
 .id-card-body:active {

@@ -330,28 +330,61 @@
         </div>
     </footer>
 
-    <!-- SCRIPT BAWAAN ANDA -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     
-    <!-- === TAMBAHAN VANILLA TILT === -->
+    <!-- === TAMBAHAN VANILLA TILT (MEMISAHKAN PC & MOBILE) === -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
-        // Menginisialisasi efek pada elemen dengan ID swing-card
-        VanillaTilt.init(document.querySelector("#swing-card"), {
-            max: 15,                // Derajat kemiringan maksimal
-            speed: 400,             // Kecepatan transisi efek
-            glare: true,            // Mengaktifkan pantulan cahaya
-            "max-glare": 0.2,       // Intensitas pantulan cahaya
-            gyroscope: true,        // Mengaktifkan sensor gyro di mobile
-            gyroscopeMinAngleX: -45,
-            gyroscopeMaxAngleX: 45,
-            gyroscopeMinAngleY: -45,
-            gyroscopeMaxAngleY: 45
+        document.addEventListener("DOMContentLoaded", function() {
+            const card = document.querySelector("#swing-card");
+            
+            if (card) {
+                // 1. Deteksi otomatis apakah ini Smartphone atau PC
+                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 900;
+
+                if (isMobile) {
+                    // ==========================================
+                    // KHUSUS SMARTPHONE: MURNI GYROSCOPE
+                    // ==========================================
+                    VanillaTilt.init(card, {
+                        max: 15,
+                        speed: 800,               
+                        perspective: 1000,
+                        easing: "cubic-bezier(.03,.98,.52,.99)",
+                        glare: true,
+                        "max-glare": 0.15,
+                        gyroscope: true,          
+                        gyroscopeMinAngleX: -35,
+                        gyroscopeMaxAngleX: 35,
+                        gyroscopeMinAngleY: -35,
+                        gyroscopeMaxAngleY: 35
+                    });
+
+                    // TRIK RAHASIA: Blokir Vanilla-Tilt dari membaca sentuhan jari/scroll di layar HP
+                    card.addEventListener("mousemove", (e) => e.stopImmediatePropagation(), true);
+                    card.addEventListener("touchmove", (e) => e.stopImmediatePropagation(), true);
+                    card.addEventListener("mouseenter", (e) => e.stopImmediatePropagation(), true);
+                    
+                } else {
+                    // ==========================================
+                    // KHUSUS LAPTOP / PC: MURNI KURSOR MOUSE
+                    // ==========================================
+                    VanillaTilt.init(card, {
+                        max: 12,
+                        speed: 600,
+                        perspective: 1000,
+                        easing: "cubic-bezier(.03,.98,.52,.99)",
+                        glare: true,
+                        "max-glare": 0.15,
+                        gyroscope: false          // GYRO DIMATIKAN TOTAL
+                    });
+                }
+            }
         });
     </script>
-    <!-- ============================= -->
+    <!-- ======================================================== -->
 
     <script src="script.js"></script>
 </body>
