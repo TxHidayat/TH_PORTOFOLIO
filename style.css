@@ -5,9 +5,10 @@
     --bg-color: #050505;
     --card-bg: #111111;
     --text-color: #Eaeaea;
-    --accent-color: #C2410C; /* Bonyos Rust */
+    --accent-color: #C2410C;
+    /* Bonyos Rust */
     --border-color: #333333;
-    
+
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Inter', sans-serif;
 }
@@ -17,27 +18,28 @@
 ========================================= */
 #splash-screen {
     position: fixed;
-    top: 0; 
-    left: 0; 
-    width: 100vw; 
+    top: 0;
+    left: 0;
+    width: 100vw;
     height: 100vh;
     z-index: 9999;
-    pointer-events: auto; /* Mengunci layar agar tidak bisa diklik/scroll saat loading */
+    pointer-events: auto;
+    /* Mengunci layar agar tidak bisa diklik/scroll saat loading */
 }
 
 /* Latar belakang hitam dengan garis kotak-kotak (Wireframe) */
 .blueprint-wipe {
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
     background-color: #050505;
     background-image:
         linear-gradient(rgba(217, 78, 24, 0.3) 1px, transparent 1px),
         linear-gradient(90deg, rgba(217, 78, 24, 0.3) 1px, transparent 1px);
     background-size: 40px 40px;
-    
+
     /* Animasi memotong layar dari atas ke bawah */
     animation: wipeDown 1.8s ease-in-out forwards;
 }
@@ -45,29 +47,47 @@
 /* Garis Laser Oranye Neon */
 .scanner-laser {
     position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 3px;
     background-color: #d94e18;
     box-shadow: 0 0 15px #d94e18, 0 0 30px #d94e18, 0 0 45px #fff;
-    
+
     /* Durasi turunnya laser disamakan persis dengan durasi potong layar */
     animation: scanLaser 1.8s ease-in-out forwards;
 }
 
 /* Menyapu layar dari utuh menjadi terpotong penuh ke bawah */
 @keyframes wipeDown {
-    0% { clip-path: inset(0 0 0 0); }
-    100% { clip-path: inset(100% 0 0 0); }
+    0% {
+        clip-path: inset(0 0 0 0);
+    }
+
+    100% {
+        clip-path: inset(100% 0 0 0);
+    }
 }
 
 /* Pergerakan laser dari atas 0% ke bawah 100% */
 @keyframes scanLaser {
-    0% { top: 0; opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
 }
 
 /* Class penutup total */
@@ -78,10 +98,10 @@
 /* =========================================
    --- RESET & GLOBAL STYLES --- 
 ========================================= */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -92,22 +112,23 @@ body {
     cursor: none;
 }
 
-a { 
-    text-decoration: none; 
-    color: inherit; 
-    cursor: none; 
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: none;
 }
 
-ul { 
-    list-style: none; 
+ul {
+    list-style: none;
 }
 
 /* =========================================
    --- CUSTOM CURSOR --- 
 ========================================= */
-.cursor-dot, .cursor-outline {
-    position: fixed; 
-    top: 0; 
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
     left: 0;
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -115,23 +136,23 @@ ul {
     pointer-events: none;
 }
 
-.cursor-dot { 
-    width: 8px; 
-    height: 8px; 
-    background-color: var(--accent-color); 
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
 }
 
 .cursor-outline {
-    width: 40px; 
+    width: 40px;
     height: 40px;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     transition: width 0.2s, height 0.2s, background-color 0.2s;
 }
 
 body.hovering .cursor-outline {
-    width: 70px; 
+    width: 70px;
     height: 70px;
-    background-color: rgba(255,255,255,0.05);
+    background-color: rgba(255, 255, 255, 0.05);
     border-color: transparent;
     backdrop-filter: blur(2px);
 }
@@ -140,12 +161,12 @@ body.hovering .cursor-outline {
    --- HERO SECTION (RETRO BRUTALISM) --- 
 ========================================= */
 .hero {
-    height: 100vh; 
+    height: 100vh;
     width: 100%;
-    display: flex; 
-    justify-content: center; 
+    display: flex;
+    justify-content: center;
     align-items: center;
-    position: relative; 
+    position: relative;
     overflow: hidden;
     background-color: #030303;
     border-bottom: 2px dashed #444;
@@ -178,12 +199,12 @@ body.hovering .cursor-outline {
 
 /* Background Image dengan Filter Sepia/Monokrom Retro */
 .hero-bg {
-    position: absolute; 
+    position: absolute;
     inset: 0;
     background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2670&auto=format&fit=crop');
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
-    opacity: 0.2; 
+    opacity: 0.2;
     filter: sepia(30%) contrast(130%) grayscale(70%);
 }
 
@@ -191,10 +212,8 @@ body.hovering .cursor-outline {
 .hero-scanline {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        rgba(18, 16, 16, 0) 50%, 
-        rgba(0, 0, 0, 0.25) 50%
-    );
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.25) 50%);
     background-size: 100% 4px;
     z-index: 2;
     pointer-events: none;
@@ -212,10 +231,10 @@ body.hovering .cursor-outline {
 }
 
 /* Content Area */
-.hero-content { 
-    z-index: 3; 
-    text-align: center; 
-    padding: 0 1rem; 
+.hero-content {
+    z-index: 3;
+    text-align: center;
+    padding: 0 1rem;
     margin-top: 2rem;
 }
 
@@ -224,10 +243,10 @@ body.hovering .cursor-outline {
     font-family: monospace;
     font-size: 0.65rem;
     letter-spacing: 0.15em;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     color: var(--accent-color);
     margin-bottom: 1.2rem;
-    display: inline-block; 
+    display: inline-block;
     font-weight: 600;
     background: rgba(10, 10, 10, 0.8);
     padding: 0.2rem 0.6rem;
@@ -243,26 +262,26 @@ body.hovering .cursor-outline {
 .title {
     font-family: var(--font-serif);
     font-size: clamp(3.5rem, 11vw, 9.5rem);
-    line-height: 0.85; 
+    line-height: 0.85;
     font-weight: 400;
     text-shadow: 4px 4px 0px #000;
 }
 
-.title span { 
-    display: block; 
+.title span {
+    display: block;
 }
 
 .title .outline {
-    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7); 
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.7);
     color: transparent;
 }
 
 /* Kotak Footer Diperkecil & Dirapatkan */
 .hero-footer {
     margin-top: 1.5rem;
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 0.8rem;
 }
 
@@ -298,29 +317,51 @@ body.hovering .cursor-outline {
     background: #000;
     border: 1px solid var(--accent-color);
     padding: 0.25rem 0.6rem;
-    box-shadow: 2px 2px 0px var(--accent-color); 
+    box-shadow: 2px 2px 0px var(--accent-color);
     animation: bounceRetro 2s infinite;
 }
 
 @keyframes bounceRetro {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-4px); }
-    60% { transform: translateY(-2px); }
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-4px);
+    }
+
+    60% {
+        transform: translateY(-2px);
+    }
 }
 
 @media (max-width: 768px) {
-    .hero-top-bar .sys-loc { display: none; }
-    .hero-top-bar { justify-content: center; gap: 1rem; }
-    .title { font-size: clamp(3rem, 12vw, 5rem); }
+    .hero-top-bar .sys-loc {
+        display: none;
+    }
+
+    .hero-top-bar {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .title {
+        font-size: clamp(3rem, 12vw, 5rem);
+    }
 }
 
 /* =========================================
    --- PROFILE SECTION (ABOUT ME) --- 
 ========================================= */
 .manifesto {
-    padding: 15vh 5vw; 
+    padding: 15vh 5vw;
     background: var(--bg-color);
-    position: relative; 
+    position: relative;
     z-index: 5;
     border-top: 1px solid var(--border-color);
 }
@@ -372,7 +413,7 @@ body.hovering .cursor-outline {
     margin-bottom: -10px;
     position: relative;
     z-index: 2;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .id-card-body {
@@ -381,26 +422,26 @@ body.hovering .cursor-outline {
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid #222;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.05);
-    
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
     /* KEMBALIKAN INI: Agar kartu berayun/miring dari titik klip di atas */
-    transform-origin: top center !important; 
-    
+    transform-origin: top center !important;
+
     cursor: grab;
     user-select: none;
     position: relative;
-    
+
     /* MENGAKTIFKAN 3D */
-    transform-style: preserve-3d; 
-    will-change: transform; 
-    
+    transform-style: preserve-3d;
+    will-change: transform;
+
     /* PENTING: Batasi transisi HANYA untuk shadow. Jangan biarkan CSS mengontrol 'transform' */
     transition: box-shadow 0.3s ease !important;
 }
 
 .id-card-body:active {
     cursor: grabbing;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
 }
 
 .card-slot {
@@ -409,7 +450,7 @@ body.hovering .cursor-outline {
     background: #050505;
     border-radius: 10px;
     margin: -10px auto 20px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,1);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 1);
 }
 
 .profile-img-wrapper {
@@ -438,12 +479,12 @@ body.hovering .cursor-outline {
 .card-shine {
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.1) 40%, transparent 50%);
+    background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.1) 40%, transparent 50%);
     pointer-events: none;
 }
 
-.profile-identity { 
-    text-align: center; 
+.profile-identity {
+    text-align: center;
 }
 
 .profile-name {
@@ -452,7 +493,7 @@ body.hovering .cursor-outline {
     line-height: 1;
     margin-bottom: 0.5rem;
     color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .profile-role {
@@ -479,11 +520,11 @@ body.hovering .cursor-outline {
     margin-bottom: 5px;
 }
 
-.id-code { 
-    font-family: monospace; 
-    font-size: 0.7rem; 
-    color: #666; 
-    letter-spacing: 0.2em; 
+.id-code {
+    font-family: monospace;
+    font-size: 0.7rem;
+    color: #666;
+    letter-spacing: 0.2em;
 }
 
 .profile-quote {
@@ -504,31 +545,31 @@ body.hovering .cursor-outline {
     gap: 4rem;
 }
 
-.text-box { 
-    max-width: 800px; 
+.text-box {
+    max-width: 800px;
 }
 
 .label {
-    display: block; 
-    font-size: 0.75rem; 
+    display: block;
+    font-size: 0.75rem;
     color: var(--accent-color);
-    margin-bottom: 1.2rem; 
+    margin-bottom: 1.2rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em; 
+    letter-spacing: 0.15em;
     font-weight: 600;
 }
 
 .text-box h2 {
-    font-family: var(--font-serif); 
+    font-family: var(--font-serif);
     font-size: clamp(2rem, 3vw, 3.2rem);
-    margin-bottom: 2rem; 
+    margin-bottom: 2rem;
     line-height: 1.1;
 }
 
-.text-box p { 
-    color: #999; 
-    line-height: 1.7; 
-    font-size: 1.15rem; 
+.text-box p {
+    color: #999;
+    line-height: 1.7;
+    font-size: 1.15rem;
 }
 
 .skill-list {
@@ -545,30 +586,47 @@ body.hovering .cursor-outline {
 }
 
 .xp-row {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     gap: 1.5rem;
 }
 
 .big-number {
-    font-family: var(--font-serif); 
-    font-size: 4rem; 
-    font-weight: 700; 
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    font-weight: 700;
     color: #fff;
 }
 
 .xp-desc {
-    font-size: 0.9rem; 
-    color: #888; 
-    text-transform: uppercase; 
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
     letter-spacing: 0.1em;
 }
 
 @media (max-width: 900px) {
-    .manifesto-container { grid-template-columns: 1fr; gap: 3rem; }
-    .profile-side { position: relative; top: 0; width: 100%; margin-bottom: 3rem; }
-    .hanging-system { width: 100%; max-width: 350px; margin: 0 auto; }
-    .lanyard-string { display: none; }
+    .manifesto-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .profile-side {
+        position: relative;
+        top: 0;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+
+    .hanging-system {
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+
+    .lanyard-string {
+        display: none;
+    }
 }
 
 /* =========================================
@@ -579,7 +637,8 @@ body.hovering .cursor-outline {
     margin-top: 15px;
     padding: 10px;
     font-size: 0.75rem;
-    font-family: monospace; /* Font gaya kode */
+    font-family: monospace;
+    /* Font gaya kode */
     text-align: center;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.7);
@@ -590,11 +649,13 @@ body.hovering .cursor-outline {
 }
 
 .cv-dl-btn:hover {
-    background: #d94e18; /* Warna oranye aksen khas retro Anda */
+    background: #d94e18;
+    /* Warna oranye aksen khas retro Anda */
     color: #000;
     border: 1px solid #d94e18;
     font-weight: bold;
-    box-shadow: 0 0 10px rgba(217, 78, 24, 0.5); /* Efek glow tipis */
+    box-shadow: 0 0 10px rgba(217, 78, 24, 0.5);
+    /* Efek glow tipis */
 }
 
 /* =========================================
@@ -634,7 +695,9 @@ body.hovering .cursor-outline {
 }
 
 @keyframes blink {
-    50% { opacity: 0; }
+    50% {
+        opacity: 0;
+    }
 }
 
 /* Grid Projects */
@@ -761,11 +824,15 @@ body.hovering .cursor-outline {
 }
 
 @media (max-width: 1024px) {
-    .retro-grid { grid-template-columns: repeat(2, 1fr); }
+    .retro-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    .retro-grid { grid-template-columns: 1fr; }
+    .retro-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* =========================================
@@ -774,39 +841,45 @@ body.hovering .cursor-outline {
 .view-more-container {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start; /* Memastikan isi tidak memanjang */
+    align-items: flex-start;
+    /* Memastikan isi tidak memanjang */
     margin-top: 40px;
     width: 100%;
-    height: max-content; /* Mengunci tinggi wadah agar pas dengan isi */
+    height: max-content;
+    /* Mengunci tinggi wadah agar pas dengan isi */
 }
 
 .view-more-btn {
     display: inline-block;
-    padding: 10px 24px; /* Ukuran padding (ruang dalam) diperkecil */
+    padding: 10px 24px;
+    /* Ukuran padding (ruang dalam) diperkecil */
     background-color: transparent;
     color: #fff;
-    border: 2px solid #fff; 
+    border: 2px solid #fff;
     font-family: monospace;
-    font-size: 0.8rem; /* Ukuran teks diperkecil */
+    font-size: 0.8rem;
+    /* Ukuran teks diperkecil */
     font-weight: bold;
     text-decoration: none;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    box-shadow: 4px 4px 0px #d94e18; /* Efek bayangan juga disesuaikan ukurannya */
+    box-shadow: 4px 4px 0px #d94e18;
+    /* Efek bayangan juga disesuaikan ukurannya */
     transition: all 0.2s ease;
 }
 
 .view-more-btn:hover {
-    background-color: #d94e18; 
-    color: #000; 
+    background-color: #d94e18;
+    color: #000;
     border-color: #d94e18;
-    box-shadow: 4px 4px 0px #fff; 
-    transform: translate(-2px, -2px); 
+    box-shadow: 4px 4px 0px #fff;
+    transform: translate(-2px, -2px);
 }
 
 .view-more-btn:active {
-    transform: translate(4px, 4px); /* Efek klik disesuaikan */
-    box-shadow: 0px 0px 0px transparent; 
+    transform: translate(4px, 4px);
+    /* Efek klik disesuaikan */
+    box-shadow: 0px 0px 0px transparent;
 }
 
 /* =========================================
@@ -820,7 +893,8 @@ body.hovering .cursor-outline {
 
 .tools-header {
     text-align: center;
-    margin-bottom: 5rem; /* Jarak diperbesar sedikit agar lebih lega */
+    margin-bottom: 5rem;
+    /* Jarak diperbesar sedikit agar lebih lega */
 }
 
 .tools-header h2 {
@@ -848,25 +922,30 @@ body.hovering .cursor-outline {
 .tools-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 2.5rem 1.5rem; /* Jarak vertikal diperbesar agar lebih elegan */
+    gap: 2.5rem 1.5rem;
+    /* Jarak vertikal diperbesar agar lebih elegan */
     max-width: 1200px;
     margin: 0 auto;
 }
 
 /* Tool Card Style (Elegan, Tanpa Kotak) */
 .tool-card {
-    background: transparent; /* Menghilangkan background */
-    border: none;            /* Menghilangkan garis tepi */
-    box-shadow: none;        /* Menghilangkan bayangan */
+    background: transparent;
+    /* Menghilangkan background */
+    border: none;
+    /* Menghilangkan garis tepi */
+    box-shadow: none;
+    /* Menghilangkan bayangan */
     padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1.2rem;
-    transition: all 0.4s ease; /* Transisi diperhalus */
+    transition: all 0.4s ease;
+    /* Transisi diperhalus */
     cursor: pointer;
-    text-align: center; 
+    text-align: center;
 }
 
 /* Tool Logo Fix */
@@ -875,68 +954,71 @@ body.hovering .cursor-outline {
     height: 45px;
     object-fit: contain;
     /* UPDATE: Menampilkan warna asli, tapi diredupkan (transparan 50%) */
-    filter: opacity(0.5); 
+    filter: opacity(0.5);
     transition: all 0.4s ease;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
 /* Label Nama Tool */
 .tool-name {
     font-family: monospace;
-    font-size: 0.75rem; 
-    color: #888; 
+    font-size: 0.75rem;
+    color: #888;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     transition: all 0.4s ease;
-    text-align: center; 
+    text-align: center;
     line-height: 1.4;
 }
 
 /* Hover Effect (Floating & Glowing) */
 .tool-card:hover {
     background: transparent;
-    transform: translateY(-8px); 
+    transform: translateY(-8px);
 }
 
 .tool-card:hover img {
     /* UPDATE: Mengembalikan kecerahan warna asli ke 100% penuh */
-    filter: opacity(1); 
-    transform: scale(1.15); 
+    filter: opacity(1);
+    transform: scale(1.15);
 }
 
 .tool-card:hover .tool-name {
-    color: var(--accent-color); 
+    color: var(--accent-color);
     font-weight: 600;
-    letter-spacing: 0.2em; 
+    letter-spacing: 0.2em;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .tools-grid { 
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 3rem 1.5rem; 
+    .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem 1.5rem;
     }
 }
 
 @media (max-width: 600px) {
-    .tools-grid { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 2rem 1rem; 
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 1rem;
     }
 }
+
 /* =========================================
    --- BASECAMP / CONTACT (TERMINAL MINIMALIS) --- 
 ========================================= */
 .basecamp {
-    padding: 6rem 5vw; 
-    background: #020202; 
+    padding: 6rem 5vw;
+    background: #020202;
     border-top: 1px solid #111;
 }
 
-.basecamp-grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); /* 3 Kolom dibagi rata sempurna */
-    gap: 3rem; /* Jarak antar kolom sama rata */
+.basecamp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 Kolom dibagi rata sempurna */
+    gap: 3rem;
+    /* Jarak antar kolom sama rata */
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
@@ -949,12 +1031,12 @@ body.hovering .cursor-outline {
 }
 
 .bc-col h4 {
-    color: #555; 
-    text-transform: uppercase; 
+    color: #555;
+    text-transform: uppercase;
     font-size: 0.75rem;
-    letter-spacing: 0.15em; 
+    letter-spacing: 0.15em;
     margin-bottom: 2rem;
-    font-family: monospace; 
+    font-family: monospace;
     font-weight: 600;
 }
 
@@ -984,19 +1066,21 @@ body.hovering .cursor-outline {
 }
 
 .social-list a:hover {
-    color: var(--accent-color, #ff4500); /* Ganti var jika tidak pakai variabel CSS */
+    color: var(--accent-color, #ff4500);
+    /* Ganti var jika tidak pakai variabel CSS */
     transform: translateX(8px);
 }
 
 /* --- 2. KOLOM TENGAH (PESAN): Rata Tengah --- */
 .center-prompt {
-    align-items: center; /* Menengahkan judul, teks, dan tombol */
+    align-items: center;
+    /* Menengahkan judul, teks, dan tombol */
     text-align: center;
 }
 
 .prompt-text {
-    font-family: monospace; 
-    font-size: 0.9rem; 
+    font-family: monospace;
+    font-size: 0.9rem;
     color: #ccc;
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -1011,20 +1095,20 @@ body.hovering .cursor-outline {
     font-size: 0.85rem;
     color: var(--accent-color, #ff4500);
     background: transparent;
-    border: 1px solid var(--accent-color, #ff4500); 
-    padding: 0.5rem 1rem; 
+    border: 1px solid var(--accent-color, #ff4500);
+    padding: 0.5rem 1rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     transition: all 0.3s ease;
     text-decoration: none;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .email-cta:hover {
     background: var(--accent-color, #ff4500);
     color: #000;
     transform: translateY(-2px);
-    box-shadow: 2px 2px 0px #000; 
+    box-shadow: 2px 2px 0px #000;
 }
 
 .email-cta .cta-icon {
@@ -1033,25 +1117,28 @@ body.hovering .cursor-outline {
 
 /* --- 3. KOLOM KANAN (ALAMAT): Rata Kanan --- */
 .basecamp-grid .bc-col:nth-child(3) {
-    align-items: flex-end; /* Memaksa konten menempel ke kanan */
-    text-align: right;     /* Teks rata kanan */
+    align-items: flex-end;
+    /* Memaksa konten menempel ke kanan */
+    text-align: right;
+    /* Teks rata kanan */
 }
 
 address {
-    font-family: monospace; 
+    font-family: monospace;
     font-style: normal;
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
     color: #888;
     line-height: 1.8;
 }
 
 /* --- RESPONSIVE MOBILE --- */
 @media (max-width: 768px) {
-    .basecamp-grid { 
-        grid-template-columns: 1fr; /* Jadi 1 kolom bersusun ke bawah di HP */
-        gap: 4rem; 
+    .basecamp-grid {
+        grid-template-columns: 1fr;
+        /* Jadi 1 kolom bersusun ke bawah di HP */
+        gap: 4rem;
     }
-    
+
     /* Mengembalikan semua kolom jadi rata tengah saat di HP agar lebih rapi */
     .basecamp-grid .bc-col:nth-child(1),
     .basecamp-grid .bc-col:nth-child(3) {
@@ -1062,9 +1149,9 @@ address {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-    .basecamp-grid { 
-        grid-template-columns: 1fr; 
-        gap: 3rem; 
+    .basecamp-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
 }
 
@@ -1073,8 +1160,8 @@ address {
 ========================================= */
 .retro-footer {
     padding: 1.5rem 5vw;
-    background: #050505; 
-    border-top: 2px dashed #333; 
+    background: #050505;
+    border-top: 2px dashed #333;
     font-family: monospace;
     text-transform: uppercase;
     font-size: 0.8rem;
@@ -1110,9 +1197,17 @@ address {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.7); } 
-    70% { box-shadow: 0 0 0 8px rgba(194, 65, 12, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(194, 65, 12, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(194, 65, 12, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(194, 65, 12, 0);
+    }
 }
 
 /* Teks Copyright Utama */
@@ -1150,8 +1245,9 @@ address {
         text-align: center;
         gap: 1.2rem;
     }
-    
-    .sys-status, .footer-code {
+
+    .sys-status,
+    .footer-code {
         justify-content: center;
         font-size: 0.75rem;
     }
@@ -1163,6 +1259,7 @@ address {
    Tampilan desktop tetap menggunakan aturan asli.
 ========================================= */
 @media (max-width: 768px) {
+
     .cursor-dot,
     .cursor-outline {
         display: none !important;
@@ -1521,6 +1618,7 @@ address {
 }
 
 @media (max-width: 380px) {
+
     .hero-content h1.title,
     .title {
         font-size: clamp(2.2rem, 11vw, 2.7rem) !important;
@@ -1562,45 +1660,52 @@ address {
 ========================================= */
 .pixel-chase-container {
     width: 100%;
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
-    height: 60px; /* Tinggi wadah dinaikkan agar muat untuk gambar full body */
-    
+    height: 60px;
+    /* Tinggi wadah dinaikkan agar muat untuk gambar full body */
+
     /* Menarik wadah ke atas agar karakter pas berlari di atas garis */
-    margin-top: -60px; 
-    pointer-events: none; 
+    margin-top: -60px;
+    pointer-events: none;
 }
 
 .pixel-chase-run {
     display: flex;
-    align-items: flex-end; /* Memastikan kaki kedua karakter sejajar menapak di bawah */
-    gap: 30px; /* Jarak antara serigala dan tengkorak diperlebar sedikit */
+    align-items: flex-end;
+    /* Memastikan kaki kedua karakter sejajar menapak di bawah */
+    gap: 30px;
+    /* Jarak antara serigala dan tengkorak diperlebar sedikit */
     position: absolute;
     bottom: 0;
-    
+
     /* Kecepatan lari (10 detik dari ujung ke ujung) */
-    animation: runChase 10s linear infinite; 
+    animation: runChase 10s linear infinite;
 }
 
 /* Mengatur ukuran gambar karakter */
-.pixel-wolf, .pixel-skull {
-    height: 50px; /* Atur seberapa besar karakter yang Anda inginkan (sesuaikan jika kurang pas) */
+.pixel-wolf,
+.pixel-skull {
+    height: 50px;
+    /* Atur seberapa besar karakter yang Anda inginkan (sesuaikan jika kurang pas) */
     width: auto;
-    
+
     /* 💡 TRIK RAHASIA: Memastikan gambar pixel tetap tajam (kotak-kotak), tidak blur! */
-    image-rendering: pixelated; 
-    
+    image-rendering: pixelated;
+
     /* Membalikkan arah menghadap ke kiri. 
        (HAPUS BARIS INI JIKA GAMBAR ASLI ANDA SUDAH MENGHADAP KIRI) */
-    transform: scaleX(-1); 
+    transform: scaleX(-1);
 }
 
 @keyframes runChase {
     0% {
         transform: translateX(100vw);
     }
+
     100% {
-        transform: translateX(-300px); /* Ditarik lebih jauh ke kiri agar gambar benar-benar hilang dari layar */
+        transform: translateX(-300px);
+        /* Ditarik lebih jauh ke kiri agar gambar benar-benar hilang dari layar */
     }
 }
 
@@ -1637,7 +1742,7 @@ address {
 #swing-card .cv-dl-btn {
     transform: translateZ(45px);
     /* Opsional: Tambahkan sedikit bayangan agar efek melayangnya lebih terasa */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -1787,22 +1892,22 @@ address {
     }
 
 
-/* Ukuran badge DEV_DESIGN.EXE di HP */
-@media (max-width: 768px) {
-    .profile-badge {
-        font-size: 0.28rem;
-        padding: 0.12rem 0.25rem;
-        letter-spacing: 0.02em;
-        line-height: 1.2;
+    /* Ukuran badge DEV_DESIGN.EXE di HP */
+    @media (max-width: 768px) {
+        .profile-badge {
+            font-size: 0.28rem;
+            padding: 0.12rem 0.25rem;
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+        }
     }
-}
 
-@media (max-width: 380px) {
-    .profile-badge {
-        font-size: 0.34rem;
-        padding: 0.1rem 0.2rem;
+    @media (max-width: 380px) {
+        .profile-badge {
+            font-size: 0.34rem;
+            padding: 0.1rem 0.2rem;
+        }
     }
-}
 
 
     /* Badge */
@@ -1839,7 +1944,7 @@ address {
         line-height: 1.2;
     }
 
-    .id-card-body > * {
+    .id-card-body>* {
         max-width: 100%;
     }
 }
@@ -2007,4 +2112,35 @@ address {
         padding: 0.3rem;
         font-size: 0.5rem;
     }
+}
+
+
+/* MOBILE ONLY: Profil dan Hero */
+@media (max-width: 768px) {
+
+    /* Card profil */
+    .retro-card {
+        width: calc(100% - 32px);
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Foto profil */
+    .retro-img-wrapper {
+        width: 100%;
+    }
+
+    /* Konten card */
+    .retro-content {
+        padding: 0.65rem;
+    }
+
+    /* Pastikan gambar tidak meluber */
+    .retro-img-wrapper img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
 }
