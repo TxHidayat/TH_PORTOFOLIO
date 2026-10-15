@@ -1350,14 +1350,14 @@ address {
 
     .retro-card {
         width: 100%;
-        max-width: 340px;
+        max-width: 300px;
         min-width: 0;
         margin-inline: auto;
     }
 
     .retro-img-wrapper {
         width: 100%;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 4 / 3;
     }
 
     .retro-img-wrapper img {
@@ -1368,31 +1368,31 @@ address {
     }
 
     .retro-content {
-        padding: 0.7rem;
+        padding: 0.5rem;
     }
 
     .retro-badge {
-        font-size: 0.62rem;
-        padding: 0.25rem 0.4rem;
-        margin-bottom: 0.8rem;
+        font-size: 0.58rem;
+        padding: 0.2rem 0.35rem;
+        margin-bottom: 0.6rem;
     }
 
     .retro-title {
-        font-size: clamp(1rem, 4.5vw, 1.2rem) !important;
+        font-size: clamp(0.85rem, 3.5vw, 1rem) !important;
         margin-bottom: 0.5rem;
         overflow-wrap: anywhere;
     }
 
     .retro-desc {
-        font-size: 0.78rem;
+        font-size: 0.65rem;
         line-height: 1.5;
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         overflow-wrap: anywhere;
     }
 
     .retro-btn {
-        font-size: 0.68rem;
-        padding: 0.45rem 0.7rem;
+        font-size: 0.6rem;
+        padding: 0.35rem 0.6rem;
         letter-spacing: 0.06em;
     }
 
