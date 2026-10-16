@@ -294,3 +294,97 @@ window.addEventListener('DOMContentLoaded', () => {
         }, 1850);
     }
 });
+
+/* =========================================
+   11. FARMORA CASE STUDY MODAL INTERACTION
+   ========================================= */
+const farmoraModal = document.getElementById('farmora-modal');
+const openFarmoraBtn = document.getElementById('open-farmora-btn');
+const closeFarmoraBtn = document.getElementById('close-farmora-btn');
+const closeFarmoraFooterBtn = document.getElementById('close-farmora-footer-btn');
+const farmoraBackdrop = document.getElementById('farmora-modal-backdrop');
+const farmoraMainImage = document.getElementById('farmora-main-image');
+const farmoraCaption = document.getElementById('farmora-showcase-caption');
+const farmoraThumbs = document.querySelectorAll('.farmora-modal__thumb');
+
+if (farmoraModal && openFarmoraBtn) {
+    const openModal = () => {
+        farmoraModal.removeAttribute('hidden');
+        // Force reflow for smooth CSS animation
+        void farmoraModal.offsetWidth;
+        farmoraModal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        if (typeof lenis !== 'undefined' && lenis && typeof lenis.stop === 'function') {
+            lenis.stop();
+        }
+        if (closeFarmoraBtn) closeFarmoraBtn.focus();
+    };
+
+    const closeModal = () => {
+        farmoraModal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        if (typeof lenis !== 'undefined' && lenis && typeof lenis.start === 'function') {
+            lenis.start();
+        }
+        setTimeout(() => {
+            if (!farmoraModal.classList.contains('is-open')) {
+                farmoraModal.setAttribute('hidden', '');
+            }
+        }, 260);
+        openFarmoraBtn.focus();
+    };
+
+    // Open trigger
+    openFarmoraBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+
+    // Close triggers
+    if (closeFarmoraBtn) closeFarmoraBtn.addEventListener('click', closeModal);
+    if (closeFarmoraFooterBtn) closeFarmoraFooterBtn.addEventListener('click', closeModal);
+    if (farmoraBackdrop) farmoraBackdrop.addEventListener('click', closeModal);
+
+    // Escape key trigger
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && farmoraModal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
+
+    // Interactive thumbnail switcher
+    farmoraThumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+            const fullSrc = thumb.getAttribute('data-full');
+            const captionText = thumb.getAttribute('data-caption');
+
+            farmoraThumbs.forEach((t) => t.classList.remove('active'));
+            thumb.classList.add('active');
+
+            if (farmoraMainImage && fullSrc) {
+                farmoraMainImage.style.opacity = '0.3';
+                farmoraMainImage.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    farmoraMainImage.src = fullSrc;
+                    farmoraMainImage.alt = captionText || 'FARMORA Screenshot';
+                    farmoraMainImage.style.opacity = '1';
+                    farmoraMainImage.style.transform = 'scale(1)';
+                }, 120);
+            }
+
+            if (farmoraCaption && captionText) {
+                farmoraCaption.textContent = captionText;
+            }
+        });
+    });
+
+    // Ensure custom cursor recognizes newly accessible modal triggers
+    farmoraModal.querySelectorAll('.hover-trigger, button').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+            document.body.classList.add('hovering');
+        });
+        el.addEventListener('mouseleave', () => {
+            document.body.classList.remove('hovering');
+        });
+    });
+}
